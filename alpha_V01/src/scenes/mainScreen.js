@@ -46,6 +46,9 @@ export class MainScreen extends Phaser.Scene {
             { frameWidth: 1000, frameHeight: 128 });
         
         this.load.image("cadreVie", "./assets/cadreVie.png");
+
+        this.load.image("gameOver_png", "./assets/gameOver_screen.png")
+        this.load.image("gameWin_png", "./assets/gameWin_screen.png")
     }
     
 

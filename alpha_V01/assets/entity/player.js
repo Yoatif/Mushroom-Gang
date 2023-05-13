@@ -258,17 +258,31 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.type = type;
     }
 
-    gainHp(){
-        this.hp += 10 
-        if (this.hp > 100){
-            this.hp = 100;
+    gainHp(player, proj){
+        if (player.parry == false){
+            player.beHit = true;
+            this.time.delayedCall(200, (player) => { player.beHit = false; }, [player], this);
+            player.hp += 10; 
+            if (player.hp == 100){
+                this.scene.start("gameOver");
+            } 
         }
+        proj.y = -50;
     }
 
     loseHp(){
         this.hp -= 10 
         if (this.hp < 0){
             this.hp = 0;
+        }
+    }
+
+    immune(player){
+        if (player.beHit == true){
+            return false;
+        }
+        else {
+            return true;
         }
     }
 

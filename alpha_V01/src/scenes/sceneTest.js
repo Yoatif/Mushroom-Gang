@@ -11,6 +11,8 @@ export class SceneTest extends Phaser.Scene {
         this.load.image("tileset", "./maps/tilesetPlaceHolder.png");
         this.load.tilemapTiledJSON("sceneTest", "./assets/json/mapTest.json");
 
+        this.load.image("map1", "./assets/map_1.png");
+
     }
 
     create(){
@@ -25,6 +27,8 @@ export class SceneTest extends Phaser.Scene {
         
         //SetCollision
         this.limite.setCollisionByProperty({estSolide: true});
+
+        this.add.image(0, 0, "map1").setOrigin(0, 0).setScale(4);
 
         //Creation Joueur
         this.player = new Player(this, 150, 700);
@@ -46,6 +50,7 @@ export class SceneTest extends Phaser.Scene {
         
         this.physics.add.overlap(this.hostile1, this.player.attaque_cac, this.ennemiTouche, null, this);
         this.physics.add.overlap(this.hostile1, this.player.attaque_dist, this.ennemiTouche, null, this);
+        this.physics.add.overlap(this.player, this.tir1, this.player.gainHp, this.player.immune, this);
     
 
 
