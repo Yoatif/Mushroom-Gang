@@ -3,8 +3,9 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "mapTest.tmx",
     "expandedProjectPaths": [
+        "."
     ],
     "fileStates": {
         "": {
@@ -13,10 +14,10 @@
         },
         "mapTest.tmx": {
             "scale": 0.6495624999999999,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 795.920330992014,
-                "y": 509.5737515635525
+                "x": 792.8413355142885,
+                "y": 508.03425382468976
             }
         },
         "mapTest.tmx#tileset": {
@@ -32,6 +33,9 @@
         },
         "tileset_tmx.tmx#tileset": {
             "scaleInDock": 1
+        },
+        "tileset_tsx.tsx": {
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "C:/Users/riall/Documents/GitHub/Mushroom-Gang/alpha_V01/assets/json",
@@ -42,6 +46,7 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 50,
     "openFiles": [
+        "mapTest.tmx"
     ],
     "project": "mushroom-gang.tiled-project",
     "property.type": "bool",
