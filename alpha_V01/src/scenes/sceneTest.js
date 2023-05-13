@@ -1,4 +1,6 @@
 import { Player } from "../../assets/entity/player.js";
+import { Hostile } from "../../assets/entity/hostiles.js";
+
 export class SceneTest extends Phaser.Scene {
     constructor() {
         super("sceneTest");
@@ -25,6 +27,9 @@ export class SceneTest extends Phaser.Scene {
 
         //Creation Joueur
         this.player = new Player(this, 150, 700);
+
+        this.hostile = new Hostile(this, 500, 700);
+        this.hostile.getPlayer(this.player);
 
         //Création Caméra
         this.physics.world.setBounds(0, 0, 1600, 1024);
