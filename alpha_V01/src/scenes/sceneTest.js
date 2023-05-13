@@ -35,6 +35,9 @@ export class SceneTest extends Phaser.Scene {
         this.hostile.getPlayer(this.player);
 
         this.hostile.getTir(this.tir);
+
+        this.physics.add.overlap(this.player, this.tir, this.playerFrappTouchePartir, null, this);
+
         //Création Caméra
         this.physics.world.setBounds(0, 0, 1600, 1024);
         this.cameras.main.setBounds(0, 0, 1600, 1024);
@@ -48,4 +51,10 @@ export class SceneTest extends Phaser.Scene {
     update(){
         
     }
+
+    playerFrappTouchePartir(hostile, tir){
+        console.log("tir touche")
+        this.tir.y=-50
+    }
+
 }

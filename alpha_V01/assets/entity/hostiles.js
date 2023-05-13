@@ -59,6 +59,10 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
 
 
         } else {
+
+
+
+            
             if (distance < 500) { //mettre une detection plus loin ?
                 this.setVelocityY( this.player.y - this.y);
             }
