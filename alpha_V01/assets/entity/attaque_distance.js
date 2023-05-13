@@ -1,8 +1,9 @@
 export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, type) {
         super(scene, x, y, "proj_perso");
         scene.add.existing(this);
         scene.physics.add.existing(this);
+        this.skin = type;
 
         this.init();
         this.initEvents();
@@ -57,6 +58,9 @@ export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
         else if (this.skin == "apple" && this.disapear){
             this.anims.play('dist_apple', true);
         }
+        else if (this.skin == "dist" && this.disapear){
+            this.anims.play('dist_perso', true);
+        }
 
         if (this.direction == "left" && this.disapear){
             this.setVelocityX(-500);
@@ -65,9 +69,11 @@ export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
             this.setVelocityX(500);
         }
 
-        if (Phaser.Math.Distance.Between(this.spawnX, this.y, this.x, this.y) > 400){
-            this.disapear = false;
-            this.destroy();
+        if (this.skin != "dist"){
+            if (Phaser.Math.Distance.Between(this.spawnX, this.y, this.x, this.y) > 400){
+                this.disapear = false;
+                this.destroy();
+            }
         }
     }
 

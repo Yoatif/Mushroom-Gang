@@ -1,8 +1,9 @@
 export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, type) {
         super(scene, x, y, "attaque_perso");
         scene.add.existing(this);
         scene.physics.add.existing(this);
+        this.skin = type;
 
         this.init();
         this.initEvents();
@@ -12,7 +13,6 @@ export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
         //Parametre
         this.body.setAllowGravity(false);
         this.disapear = true;
-        this.skin = null;
 
         //Anims
         this.anims.create({
@@ -23,11 +23,6 @@ export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
         this.anims.create({
             key: 'cac_linux',
             frames: [{ key: 'attaque_linux', frame: 0 }],
-            frameRate: 20
-        });
-        this.anims.create({
-            key: 'cac_apple',
-            frames: [{ key: 'attaque_apple', frame: 0 }],
             frameRate: 20
         });
         this.anims.create({
@@ -53,8 +48,8 @@ export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
         else if (this.skin == "windows" && this.disapear){
             this.anims.play('cac_windows', true);
         }
-        else if (this.skin == "apple" && this.disapear){
-            this.anims.play('cac_apple', true);
+        else if (this.skin == "mobCaC" && this.disapear){
+            this.anims.play('cac_perso', true);
         }
     }
 
