@@ -1,6 +1,6 @@
-export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
+export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
-        super(scene, x, y, "attaque_perso");
+        super(scene, x, y, "proj_perso");
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
@@ -13,26 +13,27 @@ export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
         this.body.setAllowGravity(false);
         this.disapear = true;
         this.skin = null;
+        this.spawnX = this.x;
 
         //Anims
         this.anims.create({
-            key: 'cac_perso',
-            frames: [{ key: 'attaque_perso', frame: 0 }],
+            key: 'dist_perso',
+            frames: [{ key: 'proj_perso', frame: 0 }],
             frameRate: 20
         });
         this.anims.create({
-            key: 'cac_linux',
-            frames: [{ key: 'attaque_linux', frame: 0 }],
+            key: 'dist_linux',
+            frames: [{ key: 'proj_linux', frame: 0 }],
             frameRate: 20
         });
         this.anims.create({
-            key: 'cac_apple',
-            frames: [{ key: 'attaque_apple', frame: 0 }],
+            key: 'dist_apple',
+            frames: [{ key: 'proj_apple', frame: 0 }],
             frameRate: 20
         });
         this.anims.create({
-            key: 'cac_windows',
-            frames: [{ key: 'attaque_windows', frame: 0 }],
+            key: 'dist_windows',
+            frames: [{ key: 'proj_windows', frame: 0 }],
             frameRate: 20
         });
     }
@@ -48,13 +49,25 @@ export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
 
         //Gestion Skin
         if (this.skin == "linux" && this.disapear) {
-            this.anims.play('cac_linux');
+            this.anims.play('dist_linux');
         }
         else if (this.skin == "windows" && this.disapear){
-            this.anims.play('cac_windows', true);
+            this.anims.play('dist_windows', true);
         }
         else if (this.skin == "apple" && this.disapear){
-            this.anims.play('cac_apple', true);
+            this.anims.play('dist_apple', true);
+        }
+
+        if (this.direction == "left" && this.disapear){
+            this.setVelocityX(-500);
+        }
+        else if (this.direction == "right" && this.disapear){
+            this.setVelocityX(500);
+        }
+
+        if (Phaser.Math.Distance.Between(this.spawnX, this.y, this.x, this.y) > 400){
+            this.disapear = false;
+            this.destroy();
         }
     }
 

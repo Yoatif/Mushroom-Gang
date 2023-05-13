@@ -24,15 +24,25 @@ export class MainScreen extends Phaser.Scene {
         this.load.spritesheet('perso_apple', './assets/spriteSheetTest_Apple.png',
             { frameWidth: 32, frameHeight: 64 });
 
-        this.load.spritesheet('attaque_perso', './assets/spriteSheetTest_Apple.png',
+        this.load.spritesheet('attaque_perso', './assets/attaque_perso.png',
             { frameWidth: 32, frameHeight: 16 });
-        this.load.spritesheet('attaque_apple', './assets/spriteSheetTest_Apple.png',
+        this.load.spritesheet('attaque_linux', './assets/attaque_linux.png',
             { frameWidth: 32, frameHeight: 16 });
-        this.load.spritesheet('attaque_apple', './assets/spriteSheetTest_Apple.png',
+        this.load.spritesheet('attaque_apple', './assets/attaque_apple.png',
             { frameWidth: 32, frameHeight: 16 });
-        this.load.spritesheet('attaque_apple', './assets/spriteSheetTest_Apple.png',
+        this.load.spritesheet('attaque_windows', './assets/attaque_windows.png',
             { frameWidth: 32, frameHeight: 16 });
+
+        this.load.spritesheet('proj_perso', './assets/proj_perso.png',
+            { frameWidth: 16, frameHeight: 16 });
+        this.load.spritesheet('proj_linux', './assets/proj_linux.png',
+            { frameWidth: 16, frameHeight: 16 });
+        this.load.spritesheet('proj_apple', './assets/proj_apple.png',
+            { frameWidth: 16, frameHeight: 16 });
+        this.load.spritesheet('proj_windows', './assets/proj_windows.png',
+            { frameWidth: 16, frameHeight: 16 });
     }
+    
 
     create(){
         //Add Image
