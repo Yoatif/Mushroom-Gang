@@ -1,6 +1,7 @@
 //Import Scene
 import { MainScreen } from "./scenes/mainScreen.js";
 import { SceneTest } from "./scenes/sceneTest.js";
+import { UiScene } from "./scenes/uiScene.js";
 
 ///EVENT EMITER///
 export const eventsCenter = new Phaser.Events.EventEmitter()
@@ -18,7 +19,7 @@ var config = {
     },
     fps: {target: 60, forceSetTimeOut: true},
     //pixelArt: true,
-    scene: [MainScreen, SceneTest]
+    scene: [MainScreen, SceneTest, UiScene]
 }
 
 export var game = new Phaser.Game(config);

@@ -14,6 +14,7 @@ export class SceneTest extends Phaser.Scene {
     }
 
     create(){
+        this.scene.run("ui-scene");
         //Load Tiled
         this.carteDuNiveau = this.add.tilemap("sceneTest");
         this.tileset = this.carteDuNiveau.addTilesetImage( "tileset", "tileset" );

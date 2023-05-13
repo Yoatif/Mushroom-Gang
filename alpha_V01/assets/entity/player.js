@@ -1,5 +1,6 @@
 import { AttaqueCAC } from "./attaque_cac.js";
 import { AttaqueDIST } from "./attaque_distance.js";
+import {eventsCenter} from "../../src/script.js"
 export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, "perso");
@@ -12,6 +13,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     init() {
         //Variable 
+        this.hp = 50;
         this.type = "";
         this.speed = 300;
         this.scale = 1;
@@ -124,6 +126,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+        eventsCenter.emit('update-hp', this.hp);
         if (this.inAction == false) {
             //Déplacement Vertical
             if (this.cursors.up.isDown) {

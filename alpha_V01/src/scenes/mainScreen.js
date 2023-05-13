@@ -41,6 +41,11 @@ export class MainScreen extends Phaser.Scene {
             { frameWidth: 16, frameHeight: 16 });
         this.load.spritesheet('proj_windows', './assets/proj_windows.png',
             { frameWidth: 16, frameHeight: 16 });
+
+        this.load.spritesheet('sprite_hp', './assets/spriteSheetBarVie.png',
+            { frameWidth: 1000, frameHeight: 128 });
+        
+        this.load.image("cadreVie", "./assets/cadreVie.png");
     }
     
 
