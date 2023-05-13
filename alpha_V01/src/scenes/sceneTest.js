@@ -28,15 +28,22 @@ export class SceneTest extends Phaser.Scene {
         //Creation Joueur
         this.player = new Player(this, 150, 700);
 
-        this.hostile = new Hostile(this, 500, 200,"Caddc");
-        this.tir = this.physics.add.sprite(-50,-50,'perso')
-        this.tir.setScale(0.5)
 
-        this.hostile.getPlayer(this.player);
+        //affichage et fonction d'UN ennemi, code à regrouper avec des childrens pour en faire plusieurs
+        {
+        this.hostile1 = new Hostile(this, 500, 200,"Caddc");
+        this.tir1 = this.physics.add.sprite(-50,-50,'perso')
+        this.tir1.setScale(0.5)
+        this.hostile1.getPlayer(this.player);
+        this.hostile1.getTir(this.tir1);
+        }
 
-        this.hostile.getTir(this.tir);
 
-        this.physics.add.overlap(this.player, this.tir, this.playerFrappTouchePartir, null, this);
+
+        this.physics.add.overlap(this.player, this.tir1, this.playerFrappTouchePartir, null, this);
+
+
+
 
         //Création Caméra
         this.physics.world.setBounds(0, 0, 1600, 1024);
@@ -45,6 +52,7 @@ export class SceneTest extends Phaser.Scene {
 
         //Création Collision
         this.physics.add.collider(this.player, this.limite);
+        
 
     }
 
@@ -52,9 +60,9 @@ export class SceneTest extends Phaser.Scene {
         
     }
 
-    playerFrappTouchePartir(hostile, tir){
+    playerFrappTouchePartir(hostile1, tir){
         console.log("tir touche")
-        this.tir.y=-50
+        this.tir1.y=-50
     }
 
 }
