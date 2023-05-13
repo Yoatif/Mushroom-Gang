@@ -80,19 +80,14 @@ export class Level01 extends Phaser.Scene {
         this.tir1.y=-50
     }
 
-    ennemiTouche(hostile1, attaque){
-        if(!hostile1.ennemiTouche){
-            hostile1.ennemiTouche=true
-            console.log("ennemi touche")
-            hostile1.vie=hostile1.vie-1
-            hostile1.setVelocityX(50)
-            hostile1.setVelocityY(-50)
-            setTimeout(() => {
-                hostile1.ennemiTouche=false;
-
-
-            }, 500);
-        
+    ennemiTouche(attaque, mob){
+        console.log(mob)
+        if (mob.ennemiTouche == false){
+            mob.ennemiTouche = true;
+            mob.vie -= 1;
+            mob.setVelocityX(50);
+            mob.setVelocityY(50);
+            this.time.delayedCall(500, (mob)=>{ mob.ennemiTouche = false }, [mob], this);
         }
     }
 }

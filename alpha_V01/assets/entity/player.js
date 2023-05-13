@@ -16,7 +16,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.alive = true;
         this.hp = 50;
         this.type = "";
-        this.speed = 400;
+        this.speed = 500;
         this.scale = 1;
         this.parry = false;
         this.inAction = false;

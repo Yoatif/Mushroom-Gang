@@ -14,7 +14,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
         console.log(this)
         this.player = null;
         this.ennemiTouche = false;
-        this.vie = 5;
+        this.vie = 3;
         this.vivant = true;
         this.attaque = null;
         this.cdAttack = true;
@@ -26,7 +26,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
-        if (this.start){
+        if (this.start) {
             this.setVelocityY(100);
             this.setCollideWorldBounds(true);
             this.start = false;
@@ -49,7 +49,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
                     this.setVelocityY(0)
                     this.setVelocityX(0)
                     if (this.cdAttack) {
-                        if (this.x > this.player.x){
+                        if (this.x > this.player.x) {
                             this.attaque = new AttaqueCAC(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
                             this.attaque.getSkin(this.type, "left");
                         }
@@ -65,7 +65,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
 
                 }
 
-                else if (distance < 250) { //mettre une detection plus loin ?
+                else if (distance < 400) { //mettre une detection plus loin ?
                     this.body.setVelocity(this.player.x - this.x, this.player.y - this.y);
                 }
                 else if (this.body.blocked.down) {
@@ -81,7 +81,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
                 }
             }
             else if (this.typeE == "dist") {
-                if (distance < 500) { //mettre une detection plus loin ?
+                if (distance < 700) { //mettre une detection plus loin ?
                     this.setVelocityY(this.player.y - this.y);
                 }
                 else if (this.body.blocked.down) {
@@ -91,24 +91,27 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
                     this.body.setVelocityY(100)
                 }
 
-                if (this.ennemiTouche == false){
+                if (this.ennemiTouche == false) {
                     this.setVelocityX(0);
                 }
-
-                if ((-30 < this.player.y - this.y) && (this.player.y - this.y < 30)) {
-                    if (this.cdAttack) {
-                        if (this.x > this.player.x){
-                            this.attaque = new AttaqueDIST(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
-                            this.attaque.getSkin(this.type, "left");
+                if (distance < 700) {
+                    if ((-30 < this.player.y - this.y) && (this.player.y - this.y < 30)) {
+                        if (this.cdAttack) {
+                            if (this.x > this.player.x) {
+                                this.attaque = new AttaqueDIST(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
+                                this.attaque.getSkin(this.typeE, "left");
+                            }
+                            else {
+                                this.attaque = new AttaqueDIST(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.typeE);
+                                this.attaque.getSkin(this.typeE, "right");
+                            }
+                            this.cdAttack = false;
+                            console.log(this.attaque)
+                            this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
+                            this.scene.time.delayedCall(2000, () => { this.cdAttack = true }, [], this);
                         }
-                        else {
-                            this.attaque = new AttaqueDIST(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.type);
-                            this.attaque.getSkin(this.type, "right");
-                        }
-                        this.cdAttack = false;
-                        this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
-                        this.scene.time.delayedCall(2000, () => { this.cdAttack = true }, [], this);
                     }
+
                 }
             }
 
