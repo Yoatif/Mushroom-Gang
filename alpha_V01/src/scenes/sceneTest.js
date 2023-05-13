@@ -28,9 +28,13 @@ export class SceneTest extends Phaser.Scene {
         //Creation Joueur
         this.player = new Player(this, 150, 700);
 
-        this.hostile = new Hostile(this, 500, 700,"Caddc");
+        this.hostile = new Hostile(this, 500, 200,"Caddc");
+        this.tir = this.physics.add.sprite(-50,-50,'perso')
+        this.tir.setScale(0.5)
+
         this.hostile.getPlayer(this.player);
 
+        this.hostile.getTir(this.tir);
         //Création Caméra
         this.physics.world.setBounds(0, 0, 1600, 1024);
         this.cameras.main.setBounds(0, 0, 1600, 1024);

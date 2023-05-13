@@ -10,10 +10,11 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
 
     init() {
         this.player = null
-
+        this.tirExiste=false
         this.setScale(2)
         this.setCollideWorldBounds(true);
         this.setVelocityY(50)
+
     }
 
     initEvents() {
@@ -71,8 +72,26 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
 
             }
 
-            if((-20<this.player.y-this.y) && (this.player.y-this.y<20)){
-                console.log("qdghquifgjqsbgqghbqjkgbkjbf")
+            if((-30<this.player.y-this.y) && (this.player.y-this.y<30)){
+                
+                if(!this.tirExiste){
+                    this.tirExiste=true;
+                    if(this.x<this.player.x){
+                        this.tir.setVelocityX(200)
+                    }
+                    else {
+                        this.tir.setVelocityX(-200)
+
+                    }
+                    this.tir.y=this.y
+                    this.tir.x=this.x    
+                    setTimeout(() => {
+                        this.tirExiste=false;
+
+
+
+                    }, 5000);
+                }
 
             }
 
@@ -85,6 +104,10 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
     getPlayer(player) {
 
         this.player = player
+    }
+
+    getTir(tir){
+        this.tir = tir
     }
 
 
