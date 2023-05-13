@@ -1,0 +1,53 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "mapTest.tmx": {
+            "scale": 0.6495624999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 795.920330992014,
+                "y": 509.5737515635525
+            }
+        },
+        "mapTest.tmx#tileset": {
+            "scaleInDock": 1
+        },
+        "tileset_tmx.tmx": {
+            "scale": 0.6495624999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 797.4598287308767,
+                "y": 509.5737515635525
+            }
+        },
+        "tileset_tmx.tmx#tileset": {
+            "scaleInDock": 1
+        }
+    },
+    "last.exportedFilePath": "C:/Users/riall/Documents/GitHub/Mushroom-Gang/alpha_V01/assets/json",
+    "last.externalTilesetPath": "C:/Users/riall/Documents/GitHub/Mushroom-Gang/alpha_V01/maps",
+    "last.imagePath": "C:/Users/riall/Documents/GitHub/Mushroom-Gang/alpha_V01/maps",
+    "map.height": 32,
+    "map.lastUsedExportFilter": "Fichiers de carte JSON (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 50,
+    "openFiles": [
+    ],
+    "project": "mushroom-gang.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "mapTest.tmx",
+        "tileset_tmx.tmx"
+    ],
+    "tileset.embedInMap": true
+}

@@ -1,6 +1,6 @@
 //Import Scene
-import { Preload } from "scenes/preload.js";
-import { MainScreen } from "scenes/mainScreen.js";
+import { MainScreen } from "./scenes/mainScreen.js";
+import { SceneTest } from "./scenes/sceneTest.js";
 
 ///EVENT EMITER///
 export const eventsCenter = new Phaser.Events.EventEmitter()
@@ -12,13 +12,13 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 300 },
+            gravity: { y: 0 },
             debug: false,
         },
     },
     fps: {target: 60, forceSetTimeOut: true},
     //pixelArt: true,
-    scene: [Preload, MainScreen]
+    scene: [MainScreen, SceneTest]
 }
 
 export var game = new Phaser.Game(config);
