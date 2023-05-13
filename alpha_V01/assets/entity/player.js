@@ -258,4 +258,18 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.type = type;
     }
 
+    gainHp(){
+        this.hp += 10 
+        if (this.hp > 100){
+            this.hp = 100;
+        }
+    }
+
+    loseHp(){
+        this.hp -= 10 
+        if (this.hp < 0){
+            this.hp = 0;
+        }
+    }
+
 }
