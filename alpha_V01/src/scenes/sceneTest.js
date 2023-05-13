@@ -75,9 +75,10 @@ export class SceneTest extends Phaser.Scene {
             hostile1.ennemiTouche=true
             console.log("ennemi touche")
             hostile1.vie=hostile1.vie-1
+            hostile1.setVelocityX(50)
+            hostile1.setVelocityY(-50)
             setTimeout(() => {
                 hostile1.ennemiTouche=false;
-
 
 
             }, 500);
