@@ -28,7 +28,7 @@ export class SceneTest extends Phaser.Scene {
         //Creation Joueur
         this.player = new Player(this, 150, 700);
 
-        this.hostile = new Hostile(this, 500, 700);
+        this.hostile = new Hostile(this, 500, 700,"Caddc");
         this.hostile.getPlayer(this.player);
 
         //Création Caméra
