@@ -25,6 +25,7 @@ export class SceneTest extends Phaser.Scene {
 
         //Creation Joueur
         this.player = new Player(this, 150, 700);
+        this.player.getType("linux");
 
         //Création Caméra
         this.physics.world.setBounds(0, 0, 1600, 1024);

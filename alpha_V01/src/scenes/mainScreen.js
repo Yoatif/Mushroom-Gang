@@ -17,7 +17,21 @@ export class MainScreen extends Phaser.Scene {
         //SpriteSheet
         this.load.spritesheet('perso', './assets/spriteSheet_Player.png',
             { frameWidth: 32, frameHeight: 64 });
-        
+        this.load.spritesheet('perso_linux', './assets/spriteSheetTest_Linux.png',
+            { frameWidth: 32, frameHeight: 64 });
+        this.load.spritesheet('perso_windows', './assets/spriteSheetTest_Windows.png',
+            { frameWidth: 32, frameHeight: 64 });
+        this.load.spritesheet('perso_apple', './assets/spriteSheetTest_Apple.png',
+            { frameWidth: 32, frameHeight: 64 });
+
+        this.load.spritesheet('attaque_perso', './assets/spriteSheetTest_Apple.png',
+            { frameWidth: 32, frameHeight: 16 });
+        this.load.spritesheet('attaque_apple', './assets/spriteSheetTest_Apple.png',
+            { frameWidth: 32, frameHeight: 16 });
+        this.load.spritesheet('attaque_apple', './assets/spriteSheetTest_Apple.png',
+            { frameWidth: 32, frameHeight: 16 });
+        this.load.spritesheet('attaque_apple', './assets/spriteSheetTest_Apple.png',
+            { frameWidth: 32, frameHeight: 16 });
     }
 
     create(){
