@@ -2,6 +2,8 @@
 import { MainScreen } from "./scenes/mainScreen.js";
 import { SceneTest } from "./scenes/sceneTest.js";
 import { Level01 } from "./scenes/level_01.js";
+import { Level02 } from "./scenes/level_02.js";
+import { Level03 } from "./scenes/level_03.js";
 import { UiScene } from "./scenes/uiScene.js";
 import { GameOver } from "./scenes/gameOver.js";
 import { GameWin } from "./scenes/gameWin.js";
@@ -22,7 +24,7 @@ var config = {
     },
     fps: {target: 60, forceSetTimeOut: true},
     //pixelArt: true,
-    scene: [MainScreen,Level01, SceneTest, UiScene, GameOver, GameWin]
+    scene: [MainScreen, Level01, Level02, Level03, SceneTest, UiScene, GameOver, GameWin]
 }
 
 export var game = new Phaser.Game(config);

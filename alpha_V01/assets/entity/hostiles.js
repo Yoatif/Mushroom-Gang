@@ -1,3 +1,5 @@
+import { AttaqueDIST } from "./attaque_distance.js";
+import { AttaqueCAC } from "./attaque_cac.js";
 export class Hostile extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y, typeE) {
         super(scene, x, y, "perso");
@@ -9,14 +11,14 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
     }
 
     init() {
+        console.log(this)
         this.player = null;
-        this.tirExiste = false;
-        this.setScale(2);
-        this.setCollideWorldBounds(true);
-        this.setVelocityY(50);
         this.ennemiTouche = false;
         this.vie = 5;
         this.vivant = true;
+        this.attaque = null;
+        this.cdAttack = true;
+        this.start = true;
     }
 
     initEvents() {
@@ -24,25 +26,44 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
-
-
-        //calcul distance avec joueur
-        const distance = Phaser.Math.Distance.Between(this.x, this.y, this.player.x, this.player.y);
-
+        if (this.start){
+            this.setVelocityY(100);
+            this.setCollideWorldBounds(true);
+            this.start = false;
+        }
         //création en fonction du type
         if (this.vivant) {
+            //Gestion taille
+            this.scale = (this.y * 2.5) / 1024;
+            this.setScale(this.scale);
 
-            if (this.typeE == "Cac") {
+            this.hitBoxY = (this.y * 64) / 1024;
+            this.hitBoxX = (this.y * 32) / 1024;
+            this.setSize(this.hitBoxX, this.hitBoxY);
+
+            //calcul distance avec joueur
+            const distance = Phaser.Math.Distance.Between(this.x, this.y, this.player.x, this.player.y);
+
+            if (this.typeE == "cac") {
                 if (distance < 80) {
                     this.setVelocityY(0)
                     this.setVelocityX(0)
-                    console.log("touche !")
-                    //play anim frappe
-
-
+                    if (this.cdAttack) {
+                        if (this.x > this.player.x){
+                            this.attaque = new AttaqueCAC(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
+                            this.attaque.getSkin(this.type, "left");
+                        }
+                        else {
+                            this.attaque = new AttaqueCAC(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.type);
+                            this.attaque.getSkin(this.type, "right");
+                        }
+                        this.cdAttack = false;
+                        this.scene.time.delayedCall(2000, () => { this.cdAttack = true }, [], this);
+                        this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
+                        this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
+                    }
 
                 }
-
 
                 else if (distance < 250) { //mettre une detection plus loin ?
                     this.body.setVelocity(this.player.x - this.x, this.player.y - this.y);
@@ -50,7 +71,6 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
                 else if (this.body.blocked.down) {
                     this.setVelocityY(-100)
                     this.setVelocityX(0)
-
                 }
                 else if (this.body.blocked.up) {
                     this.body.setVelocityY(100)
@@ -58,74 +78,49 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
 
                 } else {
                     this.setVelocityX(0)
-
                 }
-
-
             }
-            else {
-
-
-
-
+            else if (this.typeE == "dist") {
                 if (distance < 500) { //mettre une detection plus loin ?
                     this.setVelocityY(this.player.y - this.y);
                 }
-
+                else if (this.body.blocked.down) {
+                    this.setVelocityY(-100)
+                }
                 else if (this.body.blocked.up) {
                     this.body.setVelocityY(100)
-                    this.setVelocityX(0)
+                }
 
-                } else {
-                    this.setVelocityX(0)
-
+                if (this.ennemiTouche == false){
+                    this.setVelocityX(0);
                 }
 
                 if ((-30 < this.player.y - this.y) && (this.player.y - this.y < 30)) {
-
-                    if (!this.tirExiste) {
-                        console.log(this.player.attaque_cac);
-
-                        this.tirExiste = true;
-                        if (this.x < this.player.x) {
-                            this.tir.setVelocityX(200)
+                    if (this.cdAttack) {
+                        if (this.x > this.player.x){
+                            this.attaque = new AttaqueDIST(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
+                            this.attaque.getSkin(this.type, "left");
                         }
                         else {
-                            this.tir.setVelocityX(-200)
-
+                            this.attaque = new AttaqueDIST(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.type);
+                            this.attaque.getSkin(this.type, "right");
                         }
-                        this.tir.y = this.y
-                        this.tir.x = this.x
-                        setTimeout(() => {
-                            this.tirExiste = false;
-
-
-
-                        }, 5000);
+                        this.cdAttack = false;
+                        this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
+                        this.scene.time.delayedCall(2000, () => { this.cdAttack = true }, [], this);
                     }
-
                 }
-
-
             }
 
+            if (this.vie <= 0) {
+                this.vivant = false;
+                this.destroy()
+            }
         }
-        if (this.vie <= 0) {
-            this.vivant=false;
-            this.destroy()
-        }
-
-
     }
 
     getPlayer(player) {
-
         this.player = player
     }
-
-    getTir(tir) {
-        this.tir = tir
-    }
-
 
 }

@@ -9,6 +9,10 @@ export class GameWin extends Phaser.Scene {
             }}
         });
     }
+
+    init(data){
+        this.level = data.level;
+    }
     
     preload(){
         
@@ -17,10 +21,36 @@ export class GameWin extends Phaser.Scene {
 
     create(){
         this.add.image(0, 0, "gameWin_png").setOrigin(0, 0);
+
+        if (this.level != 4){
+            this.nextLevel = this.add.image(100, 500, "startButton").setInteractive();
+            this.nextLevel.on("pointerdown", this.goToNext, this);
+        }
+        else {
+            this.reRun = this.add.image(500, 900, "reRunButton").setInteractive();
+            this.reRun.on("pointerdown", this.reRunGame, this);
+        }
     }
 
     update(){
 
+    }
+
+    goToNext(){
+        if (this.level == 1){
+            this.scene.start("level02", {
+                level: this.level + 1
+            });
+        }
+        else if (this.level == 2){
+            this.scene.start("level03", {
+                level: this.level + 1
+            });
+        }
+    }
+    
+    reRunGame(){
+        this.scene.start('mainScreen');
     }
 }
 

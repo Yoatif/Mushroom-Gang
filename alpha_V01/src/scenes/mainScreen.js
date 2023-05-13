@@ -68,7 +68,9 @@ export class MainScreen extends Phaser.Scene {
     }
 
     launchGame() {
-        this.scene.start("level01");
+        this.scene.start("level01", {
+            level: 1
+        });
     }
 }
 
