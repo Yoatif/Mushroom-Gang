@@ -44,6 +44,9 @@ export class MainScreen extends Phaser.Scene {
 
         this.load.spritesheet('sprite_hp', './assets/spriteSheetBarVie.png',
             { frameWidth: 1000, frameHeight: 128 });
+
+        this.load.spritesheet('broyeuse', './assets/broyeuse.png',
+            { frameWidth: 128, frameHeight: 128 });
         
         this.load.image("cadreVie", "./assets/cadreVie.png");
 
@@ -65,7 +68,7 @@ export class MainScreen extends Phaser.Scene {
     }
 
     launchGame() {
-        this.scene.start("sceneTest");
+        this.scene.start("level01");
     }
 }
 
