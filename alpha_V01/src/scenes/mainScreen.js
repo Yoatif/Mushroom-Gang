@@ -13,6 +13,11 @@ export class MainScreen extends Phaser.Scene {
     preload(){
         //Mainscreen
         this.load.image("startButton", "./assets/launchGame.png");
+
+        //SpriteSheet
+        this.load.spritesheet('perso', './assets/spriteSheet_Player.png',
+            { frameWidth: 64, frameHeight: 32 });
+        
     }
 
     create(){
