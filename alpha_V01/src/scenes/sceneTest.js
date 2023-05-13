@@ -33,7 +33,7 @@ export class SceneTest extends Phaser.Scene {
 
         //affichage et fonction d'UN ennemi, code à regrouper avec des childrens pour en faire plusieurs
         {
-        this.hostile1 = new Hostile(this, 500, 200,"Caddc");
+        this.hostile1 = new Hostile(this, 500, 200,"Caccc");
         this.tir1 = this.physics.add.sprite(-50,-50,'perso')
         this.tir1.setScale(0.5)
         this.hostile1.getPlayer(this.player);
@@ -42,8 +42,11 @@ export class SceneTest extends Phaser.Scene {
 
 
 
-        this.physics.add.overlap(this.player, this.tir1, this.playerFrappTouchePartir, null, this);
-
+  //      this.physics.add.overlap(this.player, this.tir1, this.playerFrappTouchePartir, null, this);
+        
+        this.physics.add.overlap(this.hostile1, this.player.attaque_cac, this.ennemiTouche, null, this);
+        this.physics.add.overlap(this.hostile1, this.player.attaque_dist, this.ennemiTouche, null, this);
+    
 
 
 
@@ -63,8 +66,22 @@ export class SceneTest extends Phaser.Scene {
     }
 
     playerFrappTouchePartir(hostile1, tir){
-        console.log("tir touche")
+        console.log("tir ennemi touche")
         this.tir1.y=-50
     }
 
+    ennemiTouche(hostile1, attaque){
+        if(!hostile1.ennemiTouche){
+            hostile1.ennemiTouche=true
+            console.log("ennemi touche")
+            hostile1.vie=hostile1.vie-1
+            setTimeout(() => {
+                hostile1.ennemiTouche=false;
+
+
+
+            }, 500);
+        
+        }
+    }
 }
