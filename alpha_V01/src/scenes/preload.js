@@ -5,7 +5,8 @@ export class Preload extends Phaser.Scene {
     
     preload(){
         //Button
-        this.load.image("startButton", "./assets/launchGame.png");
+        this.load.image("startButton", "./assets/bouton_start.png");
+        this.load.image("reRunButton", "./assets/reRun.png");
 
         //SpriteSheet Perso
         this.load.spritesheet('perso', './assets/spriteSheet_Player.png',  
@@ -52,6 +53,7 @@ export class Preload extends Phaser.Scene {
         this.load.image("puddle", "./assets/puddle.png");
         this.load.image("preasure", "./assets/preasure.png");
         this.load.image("proj_preasure", "./assets/proj_preasure.png");
+        this.load.image("broyeuse", './assets/broyeuse.png');
 
         //Game Screen
         this.load.image("gameOver_png", "./assets/gameOver_screen.png")

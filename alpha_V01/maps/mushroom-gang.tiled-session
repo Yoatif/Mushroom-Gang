@@ -24,24 +24,28 @@
             "scaleInDock": 1
         },
         "level_01.tmx": {
+            "expandedObjectLayers": [
+                6,
+                7
+            ],
             "scale": 0.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 656,
-                "y": 600
+                "x": 652,
+                "y": 738
             }
         },
         "level_02.tmx": {
-            "scale": 0.0625,
-            "selectedLayer": 2,
+            "scale": 0.33,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 5120,
-                "y": 0
+                "x": 5118.181818181818,
+                "y": -15.151515151515014
             }
         },
         "level_03.tmx": {
             "scale": 0.5,
-            "selectedLayer": 2,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 4864,
                 "y": -18

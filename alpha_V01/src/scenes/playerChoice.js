@@ -1,58 +1,44 @@
-class PlayerChoice extends Phaser.Scene{
+export class PlayerChoice extends Phaser.Scene{
     constructor(){
-        super("PlayerChoice");
+        super("playerChoice");
     }
 
     init(){
         this.selectedChara = "";
-            
     }
     
     preload(){}
 
     create(){
+        this.linuxChoice = this.add.image(200, 512, 'chara_linux').setInteractive().setScale(5);
+        this.windowsChoice = this.add.image(800, 512, 'chara_windows').setInteractive().setScale(5);
+        this.appleChoice = this.add.image(1400, 512, 'chara_apple').setInteractive().setScale(5);
 
-        //créer le clicksound
-        this.clicksound = this.sound.add("button_sound", {volume: 0.8, loop: false});
-
-        //créer le background
-        this.add.image(800,400,"fond_playerChoice");
-
-        
-
-        this.tuxChoice = this.physics.add.sprite(353, 54, 'tux').setInteractive();
-
-        this.tuxButton.on("pointerdown", () => {
-            this.clicksound.play()
-            this.tuxButton.anims.play("tuxAnims");
-            this.selectedChara = "tux";
-            //this.playButton.destroy
-            //this.playButton = this.add.image(1350,200,"playButton2").setScale(0.5)
-            console.log("TUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUX!!!")
+        this.linuxChoice.on("pointerdown", () => {
+            this.selectedChara = "linux";
+            this.scene.start("level01", {
+                level: 1,
+                playerChoice: this.selectedChara,
+                listChoice: ["linux", "apple", "windows"]
+            });
         });
 
-        this.windaubeChoice = this.physics.add.sprite(353, 54, 'windaube').setInteractive();
-
-        this.windaubeButton.on("pointerdown", () => {
-            this.clicksound.play()
-            this.windaubeButton.anims.play("windaubeAnims");
-            this.selectedChara = "windaube";
-            //this.playButton.destroy
-            //this.playButton = this.add.image(1350,200,"playButton2").setScale(0.5)
-            console.log("Windaube de ses quarante-deux!!!")
+        this.windowsChoice.on("pointerdown", () => {
+            this.selectedChara = "windows";
+            this.scene.start("level01", {
+                level: 1,
+                playerChoice: this.selectedChara,
+                listChoice: ["linux", "apple", "windows"]
+            });
         });
 
-        this.macChoice = this.physics.add.sprite(353, 54, 'mac').setInteractive();
-
-        this.macButton.on("pointerdown", () => {
-            this.clicksound.play()
-            this.macButton.anims.play("macAnims");
-            this.selectedChara = "mac";
-            //this.playButton.destroy
-            //this.playButton = this.add.image(1350,200,"playButton2").setScale(0.5)
-           
-            console.log("mac!!!")
-               
+        this.appleChoice.on("pointerdown", () => {
+            this.selectedChara = "apple";
+            this.scene.start("level01", {
+                level: 1,
+                playerChoice: this.selectedChara,
+                listChoice: ["linux", "apple", "windows"]
+            });
         });
 
 

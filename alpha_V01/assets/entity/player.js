@@ -114,7 +114,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             }
 
             //Attaque CaC
-            if (this.keyA.isDown && this.inAction == false) {
+            if (this.keyA.isDown && this.inAction == false && this.type != "apple") {
                 this.inAction = true;
                 this.body.setVelocity(0, 0);
                 if (this.type == "linux") {
@@ -139,7 +139,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             }
 
             //Attaque Distance
-            if (this.keyZ.isDown && this.inAction == false) {
+            if (this.keyZ.isDown && this.inAction == false && this.type != "windows") {
                 this.inAction = true;
                 this.body.setVelocity(0, 0);
                 if (this.type == "linux") {

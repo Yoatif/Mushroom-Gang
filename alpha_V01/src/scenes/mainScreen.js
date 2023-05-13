@@ -11,12 +11,12 @@ export class MainScreen extends Phaser.Scene {
         });
     }
 
-    preload() {}
+    preload() { }
 
 
     create() {
         //Add Image
-        this.launchButton = this.add.image(350, 500, "startButton").setInteractive().setScale(1.25).setOrigin(0, 0);
+        this.launchButton = this.add.image(800, 600, "startButton").setInteractive().setScale(0.5).setOrigin(0.5, 0.5);
 
         //Create Interaction
         this.launchButton.on("pointerdown", this.launchGame, this);
@@ -27,9 +27,7 @@ export class MainScreen extends Phaser.Scene {
     }
 
     launchGame() {
-        this.scene.start("level01", {
-            level: 1
-        });
+        this.scene.start("playerChoice");
     }
 }
 

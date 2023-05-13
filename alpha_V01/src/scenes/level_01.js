@@ -8,11 +8,23 @@ export class Level01 extends Phaser.Scene {
     
     init(data){
         this.level = data.level;
+        this.selectedChara = data.playerChoice
+        this.listChoice = data.listChoice
     }
 
     preload(){}
 
     create(){
+        if (this.selectedChara == "linux"){
+            this.listChoice.splice(0, 1);
+        }
+        else if (this.selectedChara == "apple"){
+            this.listChoice.splice(1, 1)
+        }
+        else if (this.selectedChara == "windows"){
+            this.listChoice.splice(2, 1)
+        }
+
         this.scene.run("ui-scene");
         //Load Tiled
         this.carteDuNiveau = this.add.tilemap("level_01");
@@ -30,7 +42,7 @@ export class Level01 extends Phaser.Scene {
 
         //Creation Joueur
         this.player = new Player(this, 150, 700);
-        this.player.getType("linux");
+        this.player.getType(this.selectedChara);
 
         //Placement Mob
         this.mob = this.physics.add.group();
@@ -99,7 +111,8 @@ export class Level01 extends Phaser.Scene {
     nextLevel(){
         this.player.alive = false;
         this.scene.start("gameWin", {
-            level: this.level+1
+            level: this.level,
+            listChoice: this.listChoice
         });
     }
 
@@ -132,9 +145,7 @@ export class Level01 extends Phaser.Scene {
     puddleDmg(player, puddle){
         player.loseHp();
         if (player.hp == 0){
-            this.scene.start("gameWin", {
-                level: this.level
-            });
+            this.nextLevel()
         }
         player.beHit = true;
         puddle.destroy();
@@ -151,9 +162,7 @@ export class Level01 extends Phaser.Scene {
     projActivate(player, proj){
         player.loseHp();
         if (player.hp == 0){
-            this.scene.start("gameWin", {
-                level: this.level
-            });
+            this.nextLevel()
         }
         player.beHit = true;
         proj.destroy();
@@ -166,4 +175,6 @@ export class Level01 extends Phaser.Scene {
         proj.setScale((ball.y * 2.5) / 1024);
         ball.destroy();
     }
+
+
 }
