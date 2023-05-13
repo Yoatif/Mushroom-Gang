@@ -1,5 +1,6 @@
 import { AttaqueCAC } from "./attaque_cac.js";
 import { AttaqueDIST } from "./attaque_distance.js";
+import {eventsCenter} from "../../src/script.js"
 export class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y) {
         super(scene, x, y, "perso");
@@ -12,6 +13,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     init() {
         //Variable 
+        this.hp = 50;
         this.type = "";
         this.speed = 300;
         this.scale = 1;
@@ -124,6 +126,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     update() {
+        eventsCenter.emit('update-hp', this.hp);
         if (this.inAction == false) {
             //Déplacement Vertical
             if (this.cursors.up.isDown) {
@@ -253,6 +256,34 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     getType(type) {
         this.type = type;
+    }
+
+    gainHp(player, proj){
+        if (player.parry == false){
+            player.beHit = true;
+            this.time.delayedCall(200, (player) => { player.beHit = false; }, [player], this);
+            player.hp += 10; 
+            if (player.hp == 100){
+                this.scene.start("gameOver");
+            } 
+        }
+        proj.y = -50;
+    }
+
+    loseHp(){
+        this.hp -= 10 
+        if (this.hp < 0){
+            this.hp = 0;
+        }
+    }
+
+    immune(player){
+        if (player.beHit == true){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 
 }

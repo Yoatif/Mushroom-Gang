@@ -1,15 +1,15 @@
 import { Player } from "../../assets/entity/player.js";
 import { Hostile } from "../../assets/entity/hostiles.js";
 
-export class SceneTest extends Phaser.Scene {
+export class Level01 extends Phaser.Scene {
     constructor() {
-        super("sceneTest");
+        super("level01");
     }
     
     preload(){
         //Map Tiled
         this.load.image("tileset", "./maps/tilesetPlaceHolder.png");
-        this.load.tilemapTiledJSON("sceneTest", "./assets/json/mapTest.json");
+        this.load.tilemapTiledJSON("level_01", "./assets/json/level_01.json");
 
         this.load.image("map1", "./assets/map_1.png");
 
@@ -18,7 +18,7 @@ export class SceneTest extends Phaser.Scene {
     create(){
         this.scene.run("ui-scene");
         //Load Tiled
-        this.carteDuNiveau = this.add.tilemap("sceneTest");
+        this.carteDuNiveau = this.add.tilemap("level_01");
         this.tileset = this.carteDuNiveau.addTilesetImage( "tileset", "tileset" );
 
         this.fond = this.carteDuNiveau.createLayer( "fond", this.tileset );
@@ -27,13 +27,11 @@ export class SceneTest extends Phaser.Scene {
         
         //SetCollision
         this.limite.setCollisionByProperty({estSolide: true});
-
         this.add.image(0, 0, "map1").setOrigin(0, 0).setScale(4);
 
         //Creation Joueur
         this.player = new Player(this, 150, 700);
         this.player.getType("linux");
-
 
         //affichage et fonction d'UN ennemi, code à regrouper avec des childrens pour en faire plusieurs
         {
@@ -44,30 +42,28 @@ export class SceneTest extends Phaser.Scene {
         this.hostile1.getTir(this.tir1);
         }
 
+        //Fin Niveau
+        this.broyeuse = this.physics.add.sprite(9952, 732, "broyeuse")
 
-
-  //      this.physics.add.overlap(this.player, this.tir1, this.playerFrappTouchePartir, null, this);
-        
+        //Création Collision
         this.physics.add.overlap(this.hostile1, this.player.attaque_cac, this.ennemiTouche, null, this);
         this.physics.add.overlap(this.hostile1, this.player.attaque_dist, this.ennemiTouche, null, this);
         this.physics.add.overlap(this.player, this.tir1, this.player.gainHp, this.player.immune, this);
-    
-
-
+        this.physics.add.collider(this.player, this.broyeuse, this.nextLevel, null, this);
+        this.physics.add.collider(this.player, this.limite);
 
         //Création Caméra
-        this.physics.world.setBounds(0, 0, 1600, 1024);
-        this.cameras.main.setBounds(0, 0, 1600, 1024);
+        this.physics.world.setBounds(0, 0, 10080, 1024);
+        this.cameras.main.setBounds(0, 0, 10080, 1024);
         this.cameras.main.startFollow(this.player);
-
-        //Création Collision
-        this.physics.add.collider(this.player, this.limite);
-        
-
     }
 
     update(){
         
+    }
+
+    nextLevel(){
+        this.scene.start("gameWin");
     }
 
     playerFrappTouchePartir(hostile1, tir){

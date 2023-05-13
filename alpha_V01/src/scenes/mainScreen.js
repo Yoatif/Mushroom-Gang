@@ -41,6 +41,17 @@ export class MainScreen extends Phaser.Scene {
             { frameWidth: 16, frameHeight: 16 });
         this.load.spritesheet('proj_windows', './assets/proj_windows.png',
             { frameWidth: 16, frameHeight: 16 });
+
+        this.load.spritesheet('sprite_hp', './assets/spriteSheetBarVie.png',
+            { frameWidth: 1000, frameHeight: 128 });
+
+        this.load.spritesheet('broyeuse', './assets/broyeuse.png',
+            { frameWidth: 128, frameHeight: 128 });
+        
+        this.load.image("cadreVie", "./assets/cadreVie.png");
+
+        this.load.image("gameOver_png", "./assets/gameOver_screen.png")
+        this.load.image("gameWin_png", "./assets/gameWin_screen.png")
     }
     
 
@@ -57,7 +68,7 @@ export class MainScreen extends Phaser.Scene {
     }
 
     launchGame() {
-        this.scene.start("sceneTest");
+        this.scene.start("level01");
     }
 }
 
