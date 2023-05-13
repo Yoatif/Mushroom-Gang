@@ -14,9 +14,7 @@ export class GameWin extends Phaser.Scene {
         this.level = data.level;
     }
     
-    preload(){
-        
-    }
+    preload(){}
     
 
     create(){

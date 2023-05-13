@@ -36,90 +36,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.body.setMaxSpeed(this.speed);
         this.setCollideWorldBounds(true);
 
-        //Animation
-        if (true) {
-            //linux
-            this.anims.create({
-                key: 'left_linux',
-                frames: [{ key: 'perso_linux', frame: 0 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'right_linux',
-                frames: [{ key: 'perso_linux', frame: 1 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'parry_linux',
-                frames: [{ key: 'perso_linux', frame: 2 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'shoot_linux',
-                frames: [{ key: 'perso_linux', frame: 3 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'cac_linux',
-                frames: [{ key: 'perso_linux', frame: 4 }],
-                frameRate: 20
-            });
-
-            //Windows
-            this.anims.create({
-                key: 'left_windows',
-                frames: [{ key: 'perso_windows', frame: 0 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'right_windows',
-                frames: [{ key: 'perso_windows', frame: 1 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'parry_windows',
-                frames: [{ key: 'perso_windows', frame: 2 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'shoot_windows',
-                frames: [{ key: 'perso_windows', frame: 3 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'cac_windows',
-                frames: [{ key: 'perso_windows', frame: 4 }],
-                frameRate: 20
-            });
-
-            //Apple
-            this.anims.create({
-                key: 'left_apple',
-                frames: [{ key: 'perso_apple', frame: 0 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'right_apple',
-                frames: [{ key: 'perso_apple', frame: 1 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'parry_apple',
-                frames: [{ key: 'perso_apple', frame: 2 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'shoot_apple',
-                frames: [{ key: 'perso_apple', frame: 3 }],
-                frameRate: 20
-            });
-            this.anims.create({
-                key: 'cac_apple',
-                frames: [{ key: 'perso_apple', frame: 4 }],
-                frameRate: 20
-            });
-        }
-
     }
 
     initEvents() {
@@ -277,9 +193,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     loseHp() {
         this.hp -= 10
-        if (this.hp < 0) {
-            this.hp = 0;
-        }
     }
 
     immune(player) {

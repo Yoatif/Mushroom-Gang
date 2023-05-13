@@ -20,63 +20,6 @@ export class UiScene extends Phaser.Scene
         this.healthbar = this.physics.add.sprite(0, 0, "spriteHealtBar").setOrigin(0, 0).setScale(0.75);
         this.cadre = this.add.image(0, 0, "cadreVie").setOrigin(0, 0).setScale(0.75);
 
-        this.anims.create({
-			key: '100',
-			frames: [{ key: 'sprite_hp', frame: 0 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '90',
-			frames: [{ key: 'sprite_hp', frame: 1 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '80',
-			frames: [{ key: 'sprite_hp', frame: 2 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '70',
-			frames: [{ key: 'sprite_hp', frame: 3 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '60',
-			frames: [{ key: 'sprite_hp', frame: 4 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '50',
-			frames: [{ key: 'sprite_hp', frame: 5 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '40',
-			frames: [{ key: 'sprite_hp', frame: 6 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '30',
-			frames: [{ key: 'sprite_hp', frame: 7 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '20',
-			frames: [{ key: 'sprite_hp', frame: 8 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '10',
-			frames: [{ key: 'sprite_hp', frame: 9 }],
-			frameRate: 20
-		});
-        this.anims.create({
-			key: '0',
-			frames: [{ key: 'sprite_hp', frame: 10 }],
-			frameRate: 20
-		});
-
-
         eventsCenter.on('update-hp', this.updateHp, this);
 	}
 

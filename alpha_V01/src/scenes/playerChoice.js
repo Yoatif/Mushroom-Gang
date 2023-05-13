@@ -8,16 +8,7 @@ class PlayerChoice extends Phaser.Scene{
             
     }
     
-    preload(){
-
-        this.load.image("fond_playerChoice", "./assets/fond_playerChoice.png")
-
-        this.load.spritesheet("tux", "./assets/tamerele.png", {frameWidth: ,frameHeight:});
-        this.load.spritesheet("windaube", "./assets/miaouw.png", {frameWidth: ,frameHeight:});
-        this.load.spritesheet("mac", "./assets/mdr.png", {frameWidth: ,frameHeight: });
-
-        
-    }
+    preload(){}
 
     create(){
 
