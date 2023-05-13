@@ -8,12 +8,12 @@ export const eventsCenter = new Phaser.Events.EventEmitter()
 //Creation Game
 var config = {
     type: Phaser.AUTO,
-    width: 1600, height: 900,
+    width: 1600, height: 1024,
     physics: {
         default: 'arcade',
         arcade: {
             gravity: { y: 0 },
-            debug: false,
+            debug: true,
         },
     },
     fps: {target: 60, forceSetTimeOut: true},

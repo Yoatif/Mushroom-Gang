@@ -1,3 +1,4 @@
+import { Player } from "../../assets/entity/player.js";
 export class SceneTest extends Phaser.Scene {
     constructor() {
         super("sceneTest");
@@ -22,9 +23,16 @@ export class SceneTest extends Phaser.Scene {
         //SetCollision
         this.limite.setCollisionByProperty({estSolide: true});
 
+        //Creation Joueur
+        this.player = new Player(this, 150, 700);
+
         //Création Caméra
         this.physics.world.setBounds(0, 0, 1600, 1024);
         this.cameras.main.setBounds(0, 0, 1600, 1024);
+        this.cameras.main.startFollow(this.player);
+
+        //Création Collision
+        this.physics.add.collider(this.player, this.limite);
 
     }
 

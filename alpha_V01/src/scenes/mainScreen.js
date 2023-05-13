@@ -16,7 +16,7 @@ export class MainScreen extends Phaser.Scene {
 
         //SpriteSheet
         this.load.spritesheet('perso', './assets/spriteSheet_Player.png',
-            { frameWidth: 64, frameHeight: 32 });
+            { frameWidth: 32, frameHeight: 64 });
         
     }
 
