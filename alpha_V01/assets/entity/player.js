@@ -125,7 +125,12 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     this.anims.play('parry_windows', true);
                 }
                 else if (this.type == "apple") {
-                    this.anims.play('parry_apple', true);
+                    if (this.diretion == "left"){
+                        this.anims.play("parry_left_apple", true);
+                    }
+                    else if (this.diretion == "right"){
+                        this.anims.play("parry_right_apple", true);
+                    }
                 }
                 this.scene.time.delayedCall(500, () => { this.parry = false; this.inAction = false }, [], this);
             }
@@ -142,8 +147,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     else if (this.diretion == "right"){
                         this.anims.play("cac_right_linux", true);
                     }
-                    this.scene.time.delayedCall(1000, () => { this.inAction = false }, [], this);
-                    this.scene.time.delayedCall(1000, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
+                    this.scene.time.delayedCall(500, () => { this.inAction = false }, [], this);
+                    this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
                 }
                 else if (this.type == "windows") {
                     this.anims.play('cac_windows', true);
@@ -155,9 +160,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     this.attaque = new AttaqueCAC(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.type);
                 }
                 this.attaque.getSkin(this.type, this.diretion)
-                //this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
                 this.attaque_cac.add(this.attaque);
-                //this.scene.time.delayedCall(500, () => { this.inAction = false }, [], this);
             }
 
             //Attaque Distance
@@ -174,7 +177,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play("shoot_right_linux", true);
                         this.attaque = new AttaqueDIST(this.scene, this.x + (24 * this.scale), this.y - (8 * this.scale), this.type);
                     }
-                    this.scene.time.delayedCall(1000, () => { this.inAction = false }, [], this);
+                    this.scene.time.delayedCall(500, () => { this.inAction = false }, [], this);
                 }
                 else if (this.type == "apple") {
                     this.scene.sound.play("sound_tir_apple",{volume:0.02});
@@ -186,7 +189,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play("shoot_right_apple", true);
                         this.attaque = new AttaqueDIST(this.scene, this.x + (24 * this.scale), this.y + (16 * this.scale), this.type);
                     }
-                    this.scene.time.delayedCall(1400, () => { this.inAction = false }, [], this);
+                    this.scene.time.delayedCall(700, () => { this.inAction = false }, [], this);
                 }
                 this.attaque_dist.add(this.attaque);
                 this.attaque.getSkin(this.type, this.diretion);
