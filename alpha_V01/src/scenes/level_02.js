@@ -16,7 +16,7 @@ export class Level02 extends Phaser.Scene {
     preload(){}
 
     create(){
-        this.sound.add("theme", { volume: 0.0002, loop: true }).play();
+        this.sound.add("theme", { volume: 0.002, loop: true }).play();
         //Selection chara
         this.randomChara = Math.floor(Math.random() * (1 - 0 + 1));
         this.selectedChara = this.listChoice[this.randomChara];

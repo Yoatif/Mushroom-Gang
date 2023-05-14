@@ -26,11 +26,11 @@ export class GameWin extends Phaser.Scene {
 
         if (this.level != 3){
             this.add.image(0, 0, "gameWin_png").setOrigin(0, 0);
-            this.time.delayedCall(2000, this.goToNext, [], this);
+            this.time.delayedCall(5000, this.goToNext, [], this);
         }
         else {
             this.add.image(0, 0, "ecranFinalWin").setOrigin(0, 0);
-            this.time.delayedCall(2000, this.goToCredit, [], this);
+            this.time.delayedCall(5000, this.goToCredit, [], this);
         }
     }
 
