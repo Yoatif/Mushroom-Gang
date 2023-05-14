@@ -216,8 +216,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             player.hp += 10;
             if (player.hp == 100) {
                 player.alive = false;
+                eventsCenter.emit('update-hp', player.hp);
                 player.inAction = true;
-                eventsCenter.emit('hide-hp');
                 this.mob.children.each((mob)=>{
                     mob.vivant = false;
                 });

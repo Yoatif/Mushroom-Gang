@@ -52,7 +52,8 @@ export class Preload extends Phaser.Scene {
         //Obstacle
         this.load.spritesheet('barril', './assets/baril_Explo.png',
             { frameWidth: 128, frameHeight: 64 });
-        this.load.image("puddle", "./assets/puddle.png");
+        this.load.spritesheet('puddle', './assets/spritePuddle.png',
+            {frameWidth:32, frameHeight:16 });
         this.load.image("preasure", "./assets/preasure.png");
         this.load.image("proj_preasure", "./assets/proj_preasure.png");
         this.load.image("broyeuse", './assets/broyeuse.png');

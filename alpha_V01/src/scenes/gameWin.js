@@ -1,3 +1,4 @@
+import { eventsCenter } from "../script.js";
 export class GameWin extends Phaser.Scene {
     constructor() {
         super({
@@ -19,6 +20,7 @@ export class GameWin extends Phaser.Scene {
     
 
     create(){
+        eventsCenter.emit('hide-hp');
         this.add.image(0, 0, "gameWin_png").setOrigin(0, 0);
 
         if (this.level != 3){

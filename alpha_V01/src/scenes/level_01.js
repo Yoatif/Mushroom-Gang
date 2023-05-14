@@ -69,7 +69,9 @@ export class Level01 extends Phaser.Scene {
                 this.barril.add(poObs);
             }
             else if (spawn.type == "puddle"){
-                poObs = this.puddle.create(spawn.x, spawn.y, "puddle");
+                poObs = this.physics.add.sprite(spawn.x, spawn.y, "puddle");
+                poObs.setFrame(Math.floor(Math.random() * (2 - 0 + 1)));
+                this.puddle.add(poObs);
             }
             else if (spawn.type == "preasure"){
                 poObs = this.preasure.create(spawn.x, spawn.y, "preasure");
@@ -110,6 +112,7 @@ export class Level01 extends Phaser.Scene {
     update(){}
 
     nextLevel(){
+        eventsCenter.emit('update-hp', this.player.hp);
         this.player.alive = false;
         this.player.body.setVelocity(0);
         if (this.player.type == "linux") {
@@ -129,7 +132,6 @@ export class Level01 extends Phaser.Scene {
                 listChoice: this.listChoice
             })}, [], this);
         }
-        eventsCenter.emit('hide-hp');
     }
 
     ennemiTouche(attaque, mob){
@@ -151,9 +153,7 @@ export class Level01 extends Phaser.Scene {
         this.time.delayedCall(800, ()=>{ barril.destroy(); player.beHit = false }, [barril, player], this);
         player.loseHp();
         if (player.hp == 0){
-            this.scene.start("gameWin", {
-                level: this.level
-            });
+            this.nextLevel();
         }
     }
 
