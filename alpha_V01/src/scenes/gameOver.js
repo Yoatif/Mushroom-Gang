@@ -17,7 +17,7 @@ export class GameOver extends Phaser.Scene {
     
 
     create(){ 
-        this.sound.add("defeat", { volume: 0.8 }).play();
+        this.sound.add("defeat_2", { volume: 0.05 }).play();
         eventsCenter.emit('hide-hp');
 
         this.add.image(0, 0, "gameOver_png").setOrigin(0, 0);

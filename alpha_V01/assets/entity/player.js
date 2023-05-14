@@ -258,6 +258,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.time.delayedCall(200, (player) => { player.beHit = false; }, [player], this);
             }
         }
+        else {
+            this.sound.add("parry", {volume: 0.0025}).play();
+        }
         proj.disapear = false;
         proj.destroy();
     }

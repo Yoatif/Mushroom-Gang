@@ -12,6 +12,7 @@ export class Preload extends Phaser.Scene {
         this.load.image("nextLevelButton", "./assets/bouton_nextlvl.png");
 
         //Screen
+        this.load.image("ecranFinalWin","./assets/gameWin_Final.png");
         this.load.image("ecranStart", "./assets/EcranMenu.png");
         this.load.image("ecranChoose", "./assets/EcranMenuchoose.png");
         this.load.spritesheet("light", "./assets/lightchoose.png",
@@ -86,6 +87,7 @@ export class Preload extends Phaser.Scene {
         this.load.audio("theme", ["./sound/theme.ogg", "./sound/theme.mp3"]);
 
         this.load.audio('defeat', ['./sound/defeat.ogg', "./sound/defeat.mp3"]);
+        this.load.audio('defeat_2', ['./sound/defeat_2.ogg', "./sound/defeat_2.mp3"]);
         this.load.audio('victory', ['./sound/victory.ogg', './sound/victory.mp3']);
 
         this.load.audio("sound_cac_linux", ["./sound/cac_linux.ogg", "./sound/cac_linux.mp3"]);
@@ -97,6 +99,8 @@ export class Preload extends Phaser.Scene {
 
         this.load.audio("sound_destroy", ["./sound/destroy.ogg", "./sound/destroy.mp3"]);
         this.load.audio("sound_repair_cac", ["./sound/repair_cac.ogg", "./sound/repair_cac.mp3"]);
+
+        this.load.audio("parry", ["./sound/parry.ogg", "./sound/parry.mp3"]);
     }
 
     create() {
