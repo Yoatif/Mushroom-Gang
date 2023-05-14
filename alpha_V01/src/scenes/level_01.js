@@ -136,11 +136,12 @@ export class Level01 extends Phaser.Scene {
 
     ennemiTouche(attaque, mob){
         if (mob.ennemiTouche == false){
+            mob.setTint(0xff0000)
             mob.ennemiTouche = true;
             mob.vie -= 1;
             mob.setVelocityX(50);
             mob.setVelocityY(50);
-            this.time.delayedCall(500, (mob)=>{ mob.ennemiTouche = false }, [mob], this);
+            this.time.delayedCall(500, (mob)=>{ mob.ennemiTouche = false; mob.setTint() }, [mob], this);
         }
     }
 
@@ -168,7 +169,9 @@ export class Level01 extends Phaser.Scene {
     }
 
     preasureActivate(player, preasure){
-        let proj = this.proj.create(preasure.x, -50, "proj_preasure");
+        let proj = this.physics.add.sprite(preasure.x, -50, "tuyau");
+        this.proj.add(proj);
+        proj.setFrame(Math.floor(Math.random() * (1 - 0 + 1)));
         proj.setVelocityY(800);
         proj.setScale((preasure.y * 2.5) / 1024);
         preasure.destroy();

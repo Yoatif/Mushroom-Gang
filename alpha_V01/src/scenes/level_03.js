@@ -1,5 +1,6 @@
 import { Player } from "../../assets/entity/player.js";
 import { Hostile } from "../../assets/entity/hostiles.js";
+import { eventsCenter } from "../../src/script.js"
 
 export class Level03 extends Phaser.Scene {
     constructor() {
@@ -8,12 +9,14 @@ export class Level03 extends Phaser.Scene {
     
     init(data){
         this.level = data.level;
+        this.selectedChara = data.playerChoice
         this.listChoice = data.listChoice
     }
 
     preload(){}
 
     create(){
+        eventsCenter.emit('show-hp');
         //Load Tiled
         this.carteDuNiveau = this.add.tilemap("level_03");
         this.tileset = this.carteDuNiveau.addTilesetImage( "tileset", "tileset" );
@@ -56,7 +59,9 @@ export class Level03 extends Phaser.Scene {
                 this.barril.add(poObs);
             }
             else if (spawn.type == "puddle"){
-                poObs = this.puddle.create(spawn.x, spawn.y, "puddle");
+                poObs = this.physics.add.sprite(spawn.x, spawn.y, "puddle");
+                poObs.setFrame(Math.floor(Math.random() * (2 - 0 + 1)));
+                this.puddle.add(poObs);
             }
             else if (spawn.type == "preasure"){
                 poObs = this.preasure.create(spawn.x, spawn.y, "preasure");
@@ -71,7 +76,7 @@ export class Level03 extends Phaser.Scene {
         });
 
         //Fin Niveau
-        this.broyeuse = this.physics.add.sprite(9952, 732, "broyeuse")
+        this.broyeuse = this.physics.add.sprite(9952, 732, "broyeuse").setPushable(false);
 
         //Création Collision
         this.physics.add.overlap(this.mob, this.player.attaque_cac, this.ennemiTouche, null, this);
@@ -97,21 +102,36 @@ export class Level03 extends Phaser.Scene {
     update(){}
 
     nextLevel(){
+        eventsCenter.emit('update-hp', this.player.hp);
         this.player.alive = false;
-        this.scene.start("gameWin", {
-            level: this.level,
-            listChoice: this.listChoice
-        });
+        this.player.body.setVelocity(0);
+        if (this.player.type == "linux") {
+            this.player.anims.play('destroy_linux', true);
+            this.time.delayedCall(2000, ()=>{this.scene.start("gameWin", {
+                level: this.level,
+                listChoice: this.listChoice
+            })}, [], this);
+        }
+        else if (this.player.type == "windows") {
+            this.player.anims.play('parry_windows', true);
+        }
+        else if (this.player.type == "apple") {
+            this.player.anims.play('destroy_apple', true);
+            this.time.delayedCall(3000, ()=>{this.scene.start("gameWin", {
+                level: this.level,
+                listChoice: this.listChoice
+            })}, [], this);
+        }
     }
 
     ennemiTouche(attaque, mob){
-        console.log(mob)
         if (mob.ennemiTouche == false){
+            mob.setTint(0xff0000)
             mob.ennemiTouche = true;
             mob.vie -= 1;
             mob.setVelocityX(50);
             mob.setVelocityY(50);
-            this.time.delayedCall(500, (mob)=>{ mob.ennemiTouche = false }, [mob], this);
+            this.time.delayedCall(500, (mob)=>{ mob.ennemiTouche = false; mob.setTint() }, [mob], this);
         }
     }
 
@@ -124,9 +144,7 @@ export class Level03 extends Phaser.Scene {
         this.time.delayedCall(800, ()=>{ barril.destroy(); player.beHit = false }, [barril, player], this);
         player.loseHp();
         if (player.hp == 0){
-            this.scene.start("gameWin", {
-                level: this.level
-            });
+            this.nextLevel();
         }
     }
 
@@ -141,7 +159,9 @@ export class Level03 extends Phaser.Scene {
     }
 
     preasureActivate(player, preasure){
-        let proj = this.proj.create(preasure.x, -50, "proj_preasure");
+        let proj = this.physics.add.sprite(preasure.x, -50, "tuyau");
+        this.proj.add(proj);
+        proj.setFrame(Math.floor(Math.random() * (1 - 0 + 1)));
         proj.setVelocityY(800);
         proj.setScale((preasure.y * 2.5) / 1024);
         preasure.destroy();
@@ -158,7 +178,9 @@ export class Level03 extends Phaser.Scene {
     }
 
     ballActivate(player, ball){
-        let proj = this.proj.create(ball.x + 1600, ball.y, "proj_preasure");
+        let proj = this.physics.add.sprite(ball.x + 1600, ball.y, "roulant");
+        proj.setFrame(Math.floor(Math.random() * (1 - 0 + 1)));
+        this.proj.add(proj)
         proj.setVelocityX(-800);
         proj.setScale((ball.y * 2.5) / 1024);
         ball.destroy();

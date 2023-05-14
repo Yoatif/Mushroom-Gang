@@ -55,8 +55,8 @@ export class Preload extends Phaser.Scene {
         this.load.spritesheet('puddle', './assets/spritePuddle.png',
             {frameWidth:32, frameHeight:16 });
         this.load.image("preasure", "./assets/preasure.png");
-        this.load.image("proj_preasure", "./assets/proj_preasure.png");
-        this.load.image("tuyau", "./assets/tuyau.png");
+        this.load.spritesheet("tuyau", "./assets/tuyau.png",
+            { frameWidth: 32, frameHeight:32 });
         this.load.spritesheet("roulant", "./assets/roulant.png",
             { frameWidth:32, frameHeight:32 });
         this.load.image("broyeuse", './assets/broyeuse.png');
@@ -114,25 +114,25 @@ export class Preload extends Phaser.Scene {
         this.anims.create({
             key: 'shoot_left_linux',
             frames: this.anims.generateFrameNumbers('linux', { start: 26, end: 30 }),
-            frameRate: 5,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: 'shoot_right_linux',
             frames: this.anims.generateFrameNumbers('linux', { start: 7, end: 11 }),
-            frameRate: 5,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: 'cac_left_linux',
             frames: this.anims.generateFrameNumbers('linux', { start: 31, end: 32 }),
-            frameRate: 2,
+            frameRate: 4,
             repeat: -1
         });
         this.anims.create({
             key: 'cac_right_linux',
             frames: this.anims.generateFrameNumbers('linux', { start: 12, end: 13 }),
-            frameRate: 2,
+            frameRate: 4,
             repeat: -1
         });
         this.anims.create({
@@ -196,13 +196,13 @@ export class Preload extends Phaser.Scene {
         this.anims.create({
             key: 'shoot_left_apple',
             frames: this.anims.generateFrameNumbers('apple', { start: 27, end: 21 }),
-            frameRate: 5,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: 'shoot_right_apple',
             frames: this.anims.generateFrameNumbers('apple', { start: 20, end: 14 }),
-            frameRate: 5,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({
@@ -215,20 +215,41 @@ export class Preload extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('apple', { start: 42, end: 48 }),
             frameRate: 5
         });
-
         this.anims.create({
-            key: 'parry_apple',
-            frames: [{ key: 'apple', frame: 0 }],
-            frameRate: 20
+            key: 'parry_left_apple',
+            frames: this.anims.generateFrameNumbers('apple', { start: 62, end: 67 }),
+            frameRate: 10
+        });
+        this.anims.create({
+            key: 'parry_right_apple',
+            frames: this.anims.generateFrameNumbers('apple', { start: 56, end: 61 }),
+            frameRate: 10
         });
 
-
-        //Animation Ennemie
-        this.anims.create({
+        //Animations Proj
+         this.anims.create({
             key: 'dist_perso',
+            frames: [{ key: 'proj_perso', frame: 0 }],
+            frameRate: 20
+        });
+        this.anims.create({
+            key: 'dist_linux',
+            frames: [{ key: 'proj_linux', frame: 0 }],
+            frameRate: 20
+        });
+        this.anims.create({
+            key: 'dist_apple',
             frames: [{ key: 'proj_apple', frame: 0 }],
             frameRate: 20
         });
+        this.anims.create({
+            key: 'dist_windows',
+            frames: [{ key: 'proj_windows', frame: 0 }],
+            frameRate: 20
+        });
+
+        //Animation Ennemie
+
 
         //Animation Barre de vie
         this.anims.create({

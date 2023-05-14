@@ -64,7 +64,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
 
                 }
 
-                else if (distance < 400) { //mettre une detection plus loin ?
+                else if (distance < 300) { //mettre une detection plus loin ?
                     this.body.setVelocity(this.player.x - this.x, this.player.y - this.y);
                 }
                 else if (this.body.blocked.down) {
@@ -106,7 +106,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
                             }
                             this.cdAttack = false;
                             this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
-                            this.scene.time.delayedCall(2000, () => { this.cdAttack = true }, [], this);
+                            this.scene.time.delayedCall(2000, () => { this.cdAttack = true; this.attaque.disapear = false; }, [], this);
                         }
                     }
 

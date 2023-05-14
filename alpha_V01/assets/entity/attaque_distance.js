@@ -16,27 +16,6 @@ export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
         this.skin = null;
         this.spawnX = this.x;
 
-        //Anims
-        this.anims.create({
-            key: 'dist_perso',
-            frames: [{ key: 'proj_perso', frame: 0 }],
-            frameRate: 20
-        });
-        this.anims.create({
-            key: 'dist_linux',
-            frames: [{ key: 'proj_linux', frame: 0 }],
-            frameRate: 20
-        });
-        this.anims.create({
-            key: 'dist_apple',
-            frames: [{ key: 'proj_apple', frame: 0 }],
-            frameRate: 20
-        });
-        this.anims.create({
-            key: 'dist_windows',
-            frames: [{ key: 'proj_windows', frame: 0 }],
-            frameRate: 20
-        });
     }
 
     initEvents() {
@@ -62,11 +41,17 @@ export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
             this.anims.play('dist_perso', true);
         }
 
-        if (this.direction == "left" && this.disapear){
+        if (this.direction == "left" && this.disapear && this.skin != "dist"){
             this.setVelocityX(-500);
         }
-        else if (this.direction == "right" && this.disapear){
+        else if (this.direction == "right" && this.disapear && this.skin != "dist"){
             this.setVelocityX(500);
+        }
+        else if (this.direction == "right" && this.disapear){
+            this.setVelocityX(200);
+        }
+        else if (this.direction == "left" && this.disapear){
+            this.setVelocityX(-200);
         }
 
         if (this.skin != "dist"){

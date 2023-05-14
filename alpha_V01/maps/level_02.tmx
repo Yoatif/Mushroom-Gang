@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="315" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="315" height="32" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="26">
  <editorsettings>
   <export target="../assets/json/level_02.json" format="json"/>
  </editorsettings>
@@ -112,6 +112,83 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="mob"/>
- <objectgroup id="6" name="obstacle"/>
+ <objectgroup id="5" name="mob">
+  <object id="1" type="cac" x="778.788" y="521.212">
+   <point/>
+  </object>
+  <object id="2" type="cac" x="781.818" y="909.091">
+   <point/>
+  </object>
+  <object id="3" type="dist" x="1203.03" y="672.727">
+   <point/>
+  </object>
+  <object id="4" type="dist" x="2090.91" y="915.152">
+   <point/>
+  </object>
+  <object id="5" type="dist" x="2093.94" y="463.636">
+   <point/>
+  </object>
+  <object id="6" type="cac" x="3169.7" y="472.727">
+   <point/>
+  </object>
+  <object id="7" type="cac" x="3175.76" y="936.364">
+   <point/>
+  </object>
+  <object id="8" type="dist" x="4242.42" y="693.939">
+   <point/>
+  </object>
+  <object id="9" type="cac" x="4930.3" y="909.091">
+   <point/>
+  </object>
+  <object id="10" type="cac" x="5393.94" y="533.333">
+   <point/>
+  </object>
+  <object id="11" type="cac" x="5818.18" y="893.939">
+   <point/>
+  </object>
+  <object id="12" type="dist" x="6578.79" y="478.788">
+   <point/>
+  </object>
+  <object id="13" type="dist" x="6590.91" y="951.515">
+   <point/>
+  </object>
+  <object id="14" type="cac" x="7475.76" y="651.515">
+   <point/>
+  </object>
+  <object id="15" type="dist" x="8263.64" y="887.879">
+   <point/>
+  </object>
+  <object id="16" type="dist" x="8778.79" y="654.545">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="obstacle">
+  <object id="17" type="puddle" x="775.758" y="684.848">
+   <point/>
+  </object>
+  <object id="18" type="barril" x="1606.06" y="893.939">
+   <point/>
+  </object>
+  <object id="19" type="ball" x="2451.52" y="600">
+   <point/>
+  </object>
+  <object id="20" type="preasure" x="3660.61" y="915.152">
+   <point/>
+  </object>
+  <object id="21" type="ball" x="4787.88" y="581.818">
+   <point/>
+  </object>
+  <object id="22" type="puddle" x="6227.27" y="900">
+   <point/>
+  </object>
+  <object id="23" type="barril" x="7009.09" y="672.727">
+   <point/>
+  </object>
+  <object id="24" type="preasure" x="7845.45" y="869.697">
+   <point/>
+  </object>
+  <object id="25" type="puddle" x="9060.61" y="863.939">
+   <point/>
+  </object>
+ </objectgroup>
 </map>
