@@ -12,6 +12,7 @@ export class Preload extends Phaser.Scene {
         this.load.image("nextLevelButton", "./assets/bouton_nextlvl.png");
 
         //Screen
+        this.load.image("title", "./assets/titre.png");
         this.load.image("ecranFinalWin","./assets/gameWin_Final.png");
         this.load.image("ecranStart", "./assets/EcranMenu.png");
         this.load.image("ecranChoose", "./assets/EcranMenuchoose.png");
@@ -109,7 +110,7 @@ export class Preload extends Phaser.Scene {
         this.anims.create({
             key: 'left_linux',
             frames: this.anims.generateFrameNumbers('linux', { start: 20, end: 24 }),
-            frameRate: 1,
+            frameRate: 5,
             repeat: -1
         });
         this.anims.create({
@@ -177,7 +178,7 @@ export class Preload extends Phaser.Scene {
         this.anims.create({
             key: 'left_windows',
             frames: this.anims.generateFrameNumbers('windows', { start: 16, end: 20 }),
-            frameRate: 1,
+            frameRate: 5,
             repeat: -1
         });
         this.anims.create({
