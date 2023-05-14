@@ -168,7 +168,7 @@ export class Level01 extends Phaser.Scene {
     }
 
     preasureActivate(player, preasure){
-        let proj = this.proj.create(preasure.x, -50, "proj_preasure");
+        let proj = this.proj.create(preasure.x, -50, "tuyau");
         proj.setVelocityY(800);
         proj.setScale((preasure.y * 2.5) / 1024);
         preasure.destroy();

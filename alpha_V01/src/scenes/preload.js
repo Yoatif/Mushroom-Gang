@@ -55,7 +55,6 @@ export class Preload extends Phaser.Scene {
         this.load.spritesheet('puddle', './assets/spritePuddle.png',
             {frameWidth:32, frameHeight:16 });
         this.load.image("preasure", "./assets/preasure.png");
-        this.load.image("proj_preasure", "./assets/proj_preasure.png");
         this.load.image("tuyau", "./assets/tuyau.png");
         this.load.spritesheet("roulant", "./assets/roulant.png",
             { frameWidth:32, frameHeight:32 });
