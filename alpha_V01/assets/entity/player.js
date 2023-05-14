@@ -161,6 +161,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
                 }
                 else if (this.type == "windows") {
+                    this.scene.sound.play("sound_cac_windows",{volume:0.002});
                     if (this.diretion == "left"){
                         this.anims.play("cac_left_windows", true);
                     }
@@ -233,6 +234,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             player.beHit = true;
             player.hp += 10;
             if (player.hp == 100) {
+                this.sound.removeAll()
                 player.alive = false;
                 eventsCenter.emit('update-hp', player.hp);
                 player.inAction = true;

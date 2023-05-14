@@ -20,6 +20,7 @@ export class GameWin extends Phaser.Scene {
     
 
     create(){
+        this.sound.removeAll()
         eventsCenter.emit('hide-hp');
         this.add.image(0, 0, "gameWin_png").setOrigin(0, 0);
 

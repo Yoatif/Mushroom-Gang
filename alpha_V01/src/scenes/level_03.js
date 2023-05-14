@@ -16,6 +16,7 @@ export class Level03 extends Phaser.Scene {
     preload(){}
 
     create(){
+        this.sound.add("theme", { volume: 0.0002, loop: true }).play();
         eventsCenter.emit('show-hp');
         //Load Tiled
         this.carteDuNiveau = this.add.tilemap("level_03");
