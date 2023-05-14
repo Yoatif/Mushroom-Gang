@@ -85,10 +85,15 @@ export class Preload extends Phaser.Scene {
         //Audio
         this.load.audio("theme", ["./sound/theme.ogg", "./sound/theme.mp3"]);
 
+        this.load.audio('defeat', ['./sound/defeat.ogg', "./sound/defeat.mp3"]);
+        this.load.audio('victory', ['./sound/victory.ogg', './sound/victory.mp3']);
+
         this.load.audio("sound_cac_linux", ["./sound/cac_linux.ogg", "./sound/cac_linux.mp3"]);
         this.load.audio("sound_tir_linux", ["./sound/tir_linux.ogg", "./sound/tir_linux.mp3"]);
 
         this.load.audio("sound_tir_apple", ["./sound/tir_apple.ogg", "./sound/tir_apple.mp3"]);
+
+        this.load.audio('sound_cac_windows', ['./sound/cac_windows.ogg', './sound/cac_windows.mp3']);
 
         this.load.audio("sound_destroy", ["./sound/destroy.ogg", "./sound/destroy.mp3"]);
         this.load.audio("sound_repair_cac", ["./sound/repair_cac.ogg", "./sound/repair_cac.mp3"]);
@@ -414,23 +419,23 @@ export class Preload extends Phaser.Scene {
 
 
         this.scene.run('ui-scene');
-
-        this.theme = this.sound.add("theme", { volume: 0.0002, loop: true });
-        if (!this.sound.locked) {
-            // already unlocked so play
-            this.theme.play()
-        }
-        else {
-            // wait for 'unlocked' to fire and then play
-            this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
-                this.theme.play()
-            })
-        }
+        //this.theme = this.sound.add("theme", { volume: 0.0002, loop: true });
+        //if (!this.sound.locked) {
+        //    // already unlocked so play
+        //    this.theme.play()
+        //}
+        //else {
+        //    // wait for 'unlocked' to fire and then play
+        //    this.sound.once(Phaser.Sound.Events.UNLOCKED, () => {
+        //        this.theme.play()
+        //    })
+        //}
 
     }
 
     update() {
         eventsCenter.emit('hide-hp');
+        
         this.scene.start("mainScreen");
     }
 }

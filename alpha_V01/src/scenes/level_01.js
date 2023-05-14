@@ -16,6 +16,7 @@ export class Level01 extends Phaser.Scene {
     preload(){}
 
     create(){
+        this.sound.add("theme", { volume: 0.0002, loop: true }).play();
         if (this.selectedChara == "linux"){
             this.listChoice.splice(0, 1);
         }
@@ -112,6 +113,7 @@ export class Level01 extends Phaser.Scene {
     update(){}
 
     nextLevel(){
+        this.sound.removeAll()
         eventsCenter.emit('update-hp', this.player.hp);
         this.player.alive = false;
         this.player.body.setVelocity(0);

@@ -26,6 +26,7 @@ export class PlayerChoice extends Phaser.Scene{
 
         this.linuxChoice.on("pointerdown", () => {
             this.selectedChara = "linux";
+            this.sound.removeAll()
             this.scene.start("level01", {
                 level: 1,
                 playerChoice: this.selectedChara,
@@ -45,6 +46,7 @@ export class PlayerChoice extends Phaser.Scene{
 
         this.windowsChoice.on("pointerdown", () => {
             this.selectedChara = "windows";
+            this.sound.removeAll()
             this.scene.start("level01", {
                 level: 1,
                 playerChoice: this.selectedChara,
@@ -64,6 +66,7 @@ export class PlayerChoice extends Phaser.Scene{
 
         this.appleChoice.on("pointerdown", () => {
             this.selectedChara = "apple";
+            this.sound.removeAll()
             this.scene.start("level01", {
                 level: 1,
                 playerChoice: this.selectedChara,
@@ -82,13 +85,5 @@ export class PlayerChoice extends Phaser.Scene{
         });
 
 
-    }
-
-    update(){
-
-    }
-
-    onEvent(){
-        this.scene.start("Titlescreen")
     }
 }
