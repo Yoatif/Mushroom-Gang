@@ -11,19 +11,27 @@ export class Preload extends Phaser.Scene {
         this.load.image("reRunButton", "./assets/bouton_restart.png");
         this.load.image("nextLevelButton", "./assets/bouton_nextlvl.png");
 
+        //Screen
+        this.load.image("ecranStart", "./assets/EcranMenu.png");
+        this.load.image("ecranChoose", "./assets/EcranMenuchoose.png");
+        this.load.spritesheet("light", "./assets/lightchoose.png",
+            { frameWidth: 384, frameHeight: 539 });
+
         //SpriteSheet Perso
         this.load.spritesheet('perso', './assets/spriteSheet_Player.png',
             { frameWidth: 32, frameHeight: 64 });   //Base
         this.load.spritesheet('linux', './assets/LinuxRobot_sheet.png',
             { frameWidth: 64, frameHeight: 64 });   //Linux
-        this.load.spritesheet('windows', './assets/spriteSheetTest_Windows.png',
-            { frameWidth: 32, frameHeight: 64 });   //Windows
+        this.load.spritesheet('windows', './assets/WindowsRobot-sheet.png',
+            { frameWidth: 64, frameHeight: 64 });   //Windows
         this.load.spritesheet('apple', './assets/AppleRobot-sheet.png',
             { frameWidth: 32, frameHeight: 64 });   //Apple
 
-        this.load.image("chara_linux", "./assets/linuxChara.png");
-        this.load.image("chara_apple", "./assets/appleChara.png");
-        this.load.image("chara_windows", "./assets/windowsChara.png");
+        //SpriteSheet Ennemi
+        this.load.spritesheet('cac', './assets/Scientistkick-sheet.png',
+            { frameWidth: 32, frameHeight: 64 });
+        this.load.spritesheet('dist', './assets/Scientistshoot-sheet.png',
+            { frameWidth: 32, frameHeight: 64 });
 
         //SpriteSheet Attaque CaC
         this.load.spritesheet('attaque_perso', './assets/attaque_perso.png',
@@ -145,38 +153,70 @@ export class Preload extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('linux', { start: 15, end: 19 }),
             frameRate: 5
         });
-
-
         this.anims.create({
-            key: 'parry_linux',
-            frames: [{ key: 'linux', frame: 2 }],
+            key: 'parry_left_linux',
+            frames: [{ key: 'linux', frame: 34 }],
+            frameRate: 20
+        });
+        this.anims.create({
+            key: 'parry_right_linux',
+            frames: [{ key: 'linux', frame: 33 }],
             frameRate: 20
         });
 
         //Windows
         this.anims.create({
             key: 'left_windows',
+            frames: this.anims.generateFrameNumbers('windows', { start: 16, end: 20 }),
+            frameRate: 1,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'right_windows',
+            frames: this.anims.generateFrameNumbers('windows', { start: 1, end: 6 }),
+            frameRate: 5,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'standby_left_windows',
+            frames: [{ key: 'windows', frame: 14 }],
+            frameRate: 20
+        });
+        this.anims.create({
+            key: 'standby_right_windows',
             frames: [{ key: 'windows', frame: 0 }],
             frameRate: 20
         });
         this.anims.create({
-            key: 'right_windows',
-            frames: [{ key: 'windows', frame: 1 }],
+            key: 'cac_left_windows',
+            frames: this.anims.generateFrameNumbers('windows', { start: 22, end: 27 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'cac_right_windows',
+            frames: this.anims.generateFrameNumbers('windows', { start: 8, end: 13 }),
+            frameRate: 10,
+            repeat: -1
+        });
+        this.anims.create({
+            key: 'destroy_windows',
+            frames: this.anims.generateFrameNumbers('windows', { start: 28, end: 32 }),
+            frameRate: 5
+        });
+        this.anims.create({
+            key: 'repair_windows',
+            frames: this.anims.generateFrameNumbers('windows', { start: 33, end: 34 }),
+            frameRate: 5
+        });
+        this.anims.create({
+            key: 'parry_left_windows',
+            frames: [{ key: 'windows', frame: 36 }],
             frameRate: 20
         });
         this.anims.create({
-            key: 'parry_windows',
-            frames: [{ key: 'windows', frame: 2 }],
-            frameRate: 20
-        });
-        this.anims.create({
-            key: 'shoot_windows',
-            frames: [{ key: 'windows', frame: 3 }],
-            frameRate: 20
-        });
-        this.anims.create({
-            key: 'cac_windows',
-            frames: [{ key: 'windows', frame: 4 }],
+            key: 'parry_right_windows',
+            frames: [{ key: 'windows', frame: 35 }],
             frameRate: 20
         });
 
@@ -184,13 +224,13 @@ export class Preload extends Phaser.Scene {
         this.anims.create({
             key: 'left_apple',
             frames: this.anims.generateFrameNumbers('apple', { start: 7, end: 13 }),
-            frameRate: 1,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({
             key: 'right_apple',
             frames: this.anims.generateFrameNumbers('apple', { start: 0, end: 6 }),
-            frameRate: 5,
+            frameRate: 10,
             repeat: -1
         });
         this.anims.create({
@@ -227,10 +267,10 @@ export class Preload extends Phaser.Scene {
         });
 
         //Animations Proj
-         this.anims.create({
+        this.anims.create({
             key: 'dist_perso',
-            frames: [{ key: 'proj_perso', frame: 0 }],
-            frameRate: 20
+            frames: this.anims.generateFrameNumbers('proj_perso', { start: 0, end: 8 }),
+            frameRate: 10
         });
         this.anims.create({
             key: 'dist_linux',
@@ -249,6 +289,51 @@ export class Preload extends Phaser.Scene {
         });
 
         //Animation Ennemie
+        this.anims.create({
+            key: 'left_mob_cac',
+            frames: this.anims.generateFrameNumbers('cac', { start: 5, end: 9 }),
+            frameRate: 5,
+            repeat : -1
+        });
+        this.anims.create({
+            key: 'right_mob_cac',
+            frames: this.anims.generateFrameNumbers('cac', { start: 0, end: 4 }),
+            frameRate: 5,
+            repeat : -1
+        });
+        this.anims.create({
+            key: 'left_cac_mob_cac',
+            frames: this.anims.generateFrameNumbers('cac', { start: 13, end: 15 }),
+            frameRate: 10
+        });
+        this.anims.create({
+            key: 'right_cac_mob_cac',
+            frames: this.anims.generateFrameNumbers('cac', { start: 10, end: 12 }),
+            frameRate: 10
+        });
+
+        this.anims.create({
+            key: 'left_mob_dist',
+            frames: this.anims.generateFrameNumbers('dist', { start: 5, end: 9 }),
+            frameRate: 5,
+            repeat : -1
+        });
+        this.anims.create({
+            key: 'right_mob_dist',
+            frames: this.anims.generateFrameNumbers('dist', { start: 0, end: 4 }),
+            frameRate: 5,
+            repeat : -1
+        });
+        this.anims.create({
+            key: 'left_cac_mob_dist',
+            frames: this.anims.generateFrameNumbers('dist', { start: 15, end: 19 }),
+            frameRate: 5
+        });
+        this.anims.create({
+            key: 'right_cac_mob_dist',
+            frames: this.anims.generateFrameNumbers('dist', { start: 10, end: 14 }),
+            frameRate: 10
+        });
 
 
         //Animation Barre de vie
@@ -314,6 +399,19 @@ export class Preload extends Phaser.Scene {
             frames: this.anims.generateFrameNumbers('barril', { start: 0, end: 7 }),
             frameRate: 10
         });
+        this.anims.create({
+            key: 'rat',
+            frames: this.anims.generateFrameNumbers('roulant', { start: 6, end: 11 }),
+            frameRate: 5,
+            repeat : -1
+        });
+        this.anims.create({
+            key: 'roue',
+            frames: this.anims.generateFrameNumbers('roulant', { start: 0, end: 5 }),
+            frameRate: 5,
+            repeat : -1
+        });
+
 
         this.scene.run('ui-scene');
 

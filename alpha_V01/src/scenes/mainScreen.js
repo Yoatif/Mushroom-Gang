@@ -16,7 +16,8 @@ export class MainScreen extends Phaser.Scene {
 
     create() {
         //Add Image
-        this.launchButton = this.add.image(800, 600, "startButton").setInteractive().setScale(0.5).setOrigin(0.5, 0.5);
+        this.add.image(0, 0,"ecranStart").setOrigin(0,0)
+        this.launchButton = this.add.image(800, 700, "startButton").setInteractive().setScale(0.5).setOrigin(0.5, 0.5);
 
         //Create Interaction
         this.launchButton.on("pointerdown", this.launchGame, this);

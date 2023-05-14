@@ -123,7 +123,11 @@ export class Level01 extends Phaser.Scene {
             })}, [], this);
         }
         else if (this.player.type == "windows") {
-            this.player.anims.play('parry_windows', true);
+            this.player.anims.play('destroy_windows', true);
+            this.time.delayedCall(2000, ()=>{this.scene.start("gameWin", {
+                level: this.level,
+                listChoice: this.listChoice
+            })}, [], this);
         }
         else if (this.player.type == "apple") {
             this.player.anims.play('destroy_apple', true);
@@ -189,7 +193,13 @@ export class Level01 extends Phaser.Scene {
 
     ballActivate(player, ball){
         let proj = this.physics.add.sprite(ball.x + 1600, ball.y, "roulant");
-        proj.setFrame(Math.floor(Math.random() * (1 - 0 + 1)));
+        let random = (Math.floor(Math.random() * (1 - 0 + 1)));
+        if (random == 0){
+            proj.anims.play("rat", true);
+        }
+        else {
+            proj.anims.play("roue", true);
+        }
         this.proj.add(proj)
         proj.setVelocityX(-800);
         proj.setScale((ball.y * 2.5) / 1024);

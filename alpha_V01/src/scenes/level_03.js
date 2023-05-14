@@ -113,7 +113,11 @@ export class Level03 extends Phaser.Scene {
             })}, [], this);
         }
         else if (this.player.type == "windows") {
-            this.player.anims.play('parry_windows', true);
+            this.player.anims.play('destroy_windows', true);
+            this.time.delayedCall(2000, ()=>{this.scene.start("gameWin", {
+                level: this.level,
+                listChoice: this.listChoice
+            })}, [], this);
         }
         else if (this.player.type == "apple") {
             this.player.anims.play('destroy_apple', true);

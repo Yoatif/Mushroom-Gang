@@ -40,6 +40,7 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
             this.hitBoxX = (this.y * 32) / 1024;
             this.setSize(this.hitBoxX, this.hitBoxY);
 
+
             //calcul distance avec joueur
             const distance = Phaser.Math.Distance.Between(this.x, this.y, this.player.x, this.player.y);
 
@@ -49,10 +50,12 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
                     this.setVelocityX(0)
                     if (this.cdAttack) {
                         if (this.x > this.player.x) {
+                            this.anims.play("left_cac_mob_cac", true);
                             this.attaque = new AttaqueCAC(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
                             this.attaque.getSkin(this.type, "left");
                         }
                         else {
+                            this.anims.play("right_cac_mob_cac", true);
                             this.attaque = new AttaqueCAC(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.type);
                             this.attaque.getSkin(this.type, "right");
                         }
@@ -66,50 +69,95 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
 
                 else if (distance < 300) { //mettre une detection plus loin ?
                     this.body.setVelocity(this.player.x - this.x, this.player.y - this.y);
+                    if (this.x > this.player.x) {
+                        this.anims.play("left_mob_cac", true);
+                    }
+                    else {
+                        this.anims.play("right_mob_cac", true);
+                    }
                 }
                 else if (this.body.blocked.down) {
                     this.setVelocityY(-100)
                     this.setVelocityX(0)
+                    if (this.x > this.player.x) {
+                        this.anims.play("left_mob_cac", true);
+                    }
+                    else {
+                        this.anims.play("right_mob_cac", true);
+                    }
                 }
                 else if (this.body.blocked.up) {
                     this.body.setVelocityY(100)
                     this.setVelocityX(0)
+                    if (this.x > this.player.x) {
+                        this.anims.play("left_mob_cac", true);
+                    }
+                    else {
+                        this.anims.play("right_mob_cac", true);
+                    }
 
                 } else {
                     this.setVelocityX(0)
+                    if (this.x > this.player.x) {
+                        this.anims.play("left_mob_cac", true);
+                    }
+                    else {
+                        this.anims.play("right_mob_cac", true);
+                    }
                 }
             }
             else if (this.typeE == "dist") {
                 if (distance < 700) { //mettre une detection plus loin ?
                     this.setVelocityY(this.player.y - this.y);
+                    if (distance < 700) {
+                        if ((-30 < this.player.y - this.y) && (this.player.y - this.y < 30)) {
+                            if (this.cdAttack) {
+                                if (this.x > this.player.x) {
+                                    this.anims.playReverse("left_cac_mob_dist", true);
+                                    this.attaque = new AttaqueDIST(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
+                                    this.attaque.getSkin(this.typeE, "left");
+                                }
+                                else {
+                                    this.anims.playReverse("right_cac_mob_dist", true);
+                                    this.attaque = new AttaqueDIST(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.typeE);
+                                    this.attaque.getSkin(this.typeE, "right");
+                                }
+                                this.cdAttack = false;
+                                this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
+                                this.scene.time.delayedCall(2000, () => { this.cdAttack = true; this.attaque.disapear = false; }, [], this);
+                            }
+                        }
+                    }
                 }
                 else if (this.body.blocked.down) {
                     this.setVelocityY(-100)
+                    if (this.x > this.player.x) {
+                        this.anims.play("left_mob_dist", true);
+                    }
+                    else {
+                        this.anims.play("right_mob_dist", true);
+                    }
                 }
                 else if (this.body.blocked.up) {
                     this.body.setVelocityY(100)
+                    if (this.x > this.player.x) {
+                        this.anims.play("left_mob_dist", true);
+                    }
+                    else {
+                        this.anims.play("right_mob_dist", true);
+                    }
+                }
+                else {
+                    if (this.x > this.player.x) {
+                        this.anims.play("left_mob_dist", true);
+                    }
+                    else {
+                        this.anims.play("right_mob_dist", true);
+                    }
                 }
 
                 if (this.ennemiTouche == false) {
                     this.setVelocityX(0);
-                }
-                if (distance < 700) {
-                    if ((-30 < this.player.y - this.y) && (this.player.y - this.y < 30)) {
-                        if (this.cdAttack) {
-                            if (this.x > this.player.x) {
-                                this.attaque = new AttaqueDIST(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.typeE);
-                                this.attaque.getSkin(this.typeE, "left");
-                            }
-                            else {
-                                this.attaque = new AttaqueDIST(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.typeE);
-                                this.attaque.getSkin(this.typeE, "right");
-                            }
-                            this.cdAttack = false;
-                            this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
-                            this.scene.time.delayedCall(2000, () => { this.cdAttack = true; this.attaque.disapear = false; }, [], this);
-                        }
-                    }
-
                 }
             }
 

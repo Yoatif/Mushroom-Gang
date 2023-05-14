@@ -38,7 +38,13 @@ export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
             this.anims.play('dist_apple', true);
         }
         else if (this.skin == "dist" && this.disapear){
-            this.anims.play('dist_perso', true);
+            if (this.direction == "left"){
+                this.anims.playReverse('dist_perso', true);
+            }
+            else {
+                this.anims.play('dist_perso', true);
+            }
+            
         }
 
         if (this.direction == "left" && this.disapear && this.skin != "dist"){

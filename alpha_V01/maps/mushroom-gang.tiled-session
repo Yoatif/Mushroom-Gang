@@ -49,10 +49,10 @@
         },
         "level_03.tmx": {
             "scale": 0.5,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 888,
-                "y": 508
+                "x": 210,
+                "y": 768
             }
         },
         "mapTest.tmx": {
@@ -60,7 +60,7 @@
             "selectedLayer": 0,
             "viewCenter": {
                 "x": 933.3333333333333,
-                "y": 903.0303030303031
+                "y": 900.0000000000001
             }
         },
         "mapTest.tmx#tileset": {
@@ -94,10 +94,11 @@
     "project": "mushroom-gang.tiled-project",
     "property.type": "bool",
     "recentFiles": [
+        "mapTest.tmx",
+        "level_03.tmx",
         "level_02.tmx",
         "level_01.tmx",
         "C:/Users/riall/Documents/GitHub/ProjectFrog/maps/sceneTest.tmx",
-        "mapTest.tmx",
         "tileset_tmx.tmx"
     ],
     "tileset.embedInMap": true
