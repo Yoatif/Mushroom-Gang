@@ -86,7 +86,7 @@ export class Level01 extends Phaser.Scene {
         });
 
         //Fin Niveau
-        this.broyeuse = this.physics.add.sprite(9952, 732, "broyeuse")
+        this.broyeuse = this.physics.add.sprite(9952, 732, "broyeuse").setPushable(false);
 
         //Création Collision
         this.physics.add.overlap(this.mob, this.player.attaque_cac, this.ennemiTouche, null, this);
@@ -185,7 +185,9 @@ export class Level01 extends Phaser.Scene {
     }
 
     ballActivate(player, ball){
-        let proj = this.proj.create(ball.x + 1600, ball.y, "proj_preasure");
+        let proj = this.physics.add.sprite(ball.x + 1600, ball.y, "roulant");
+        proj.setFrame(Math.floor(Math.random() * (1 - 0 + 1)));
+        this.proj.add(proj)
         proj.setVelocityX(-800);
         proj.setScale((ball.y * 2.5) / 1024);
         ball.destroy();
