@@ -15,7 +15,9 @@ export class Preload extends Phaser.Scene {
         this.load.image("title", "./assets/titre.png");
         this.load.image("ecranFinalWin","./assets/gameWin_Final.png");
         this.load.image("ecranStart", "./assets/EcranMenu.png");
+        this.load.image("ecranLore","./assets/EcranMenuNarra.png")
         this.load.image("ecranChoose", "./assets/EcranMenuchoose.png");
+        this.load.image("ecranCredit", './assets/EcranMenucredit.png');
         this.load.spritesheet("light", "./assets/lightchoose.png",
             { frameWidth: 384, frameHeight: 539 });
 

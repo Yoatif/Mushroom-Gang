@@ -1,6 +1,7 @@
 //Import Scene
 import { Preload } from "./scenes/preload.js";
 import { MainScreen } from "./scenes/mainScreen.js";
+import { Lore } from "./scenes/lore.js";
 import { PlayerChoice } from "./scenes/playerChoice.js";
 import { SceneTest } from "./scenes/sceneTest.js";
 import { Level01 } from "./scenes/level_01.js";
@@ -27,7 +28,7 @@ var config = {
     },
     fps: {target: 60, forceSetTimeOut: true},
     //pixelArt: true,
-    scene: [Preload, MainScreen, PlayerChoice, Level01, Level02, Level03, SceneTest, UiScene, GameOver, GameWin, Credit]
+    scene: [Preload, MainScreen, PlayerChoice, Level01, Level02, Level03, SceneTest, UiScene, GameOver, GameWin, Credit, Lore]
 }
 
 export var game = new Phaser.Game(config);

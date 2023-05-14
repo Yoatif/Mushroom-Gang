@@ -30,7 +30,7 @@ export class MainScreen extends Phaser.Scene {
     }
 
     launchGame() {
-        this.scene.start("playerChoice");
+        this.scene.start("lore");
     }
 }
 
