@@ -16,7 +16,7 @@ export class Level01 extends Phaser.Scene {
     preload(){}
 
     create(){
-        this.sound.add("theme", { volume: 0.0002, loop: true }).play();
+        this.sound.add("theme", { volume: 0.002, loop: true }).play();
         if (this.selectedChara == "linux"){
             this.listChoice.splice(0, 1);
         }

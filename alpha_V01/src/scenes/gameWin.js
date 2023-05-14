@@ -21,6 +21,7 @@ export class GameWin extends Phaser.Scene {
 
     create(){
         this.sound.removeAll()
+        this.sound.add("victory", { volume: 0.5 }).play();
         eventsCenter.emit('hide-hp');
 
         if (this.level != 3){
