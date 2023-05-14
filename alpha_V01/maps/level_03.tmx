@@ -113,7 +113,7 @@
 </data>
  </layer>
  <objectgroup id="5" name="mob">
-  <object id="1" type="dist" x="754" y="822">
+  <object id="1" type="dist" x="500" y="822">
    <point/>
   </object>
   <object id="2" type="dist" x="1270" y="488">

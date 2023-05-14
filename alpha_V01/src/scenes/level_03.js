@@ -184,7 +184,13 @@ export class Level03 extends Phaser.Scene {
 
     ballActivate(player, ball){
         let proj = this.physics.add.sprite(ball.x + 1600, ball.y, "roulant");
-        proj.setFrame(Math.floor(Math.random() * (1 - 0 + 1)));
+        let random = (Math.floor(Math.random() * (1 - 0 + 1)));
+        if (random == 0){
+            proj.anims.play("rat", true);
+        }
+        else {
+            proj.anims.play("roue", true);
+        }
         this.proj.add(proj)
         proj.setVelocityX(-800);
         proj.setScale((ball.y * 2.5) / 1024);

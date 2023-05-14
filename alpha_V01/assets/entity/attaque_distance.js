@@ -66,6 +66,8 @@ export class AttaqueDIST extends Phaser.Physics.Arcade.Sprite {
                 this.destroy();
             }
         }
+
+        this.disapear = false;
     }
 
     getSkin(skin, direction){

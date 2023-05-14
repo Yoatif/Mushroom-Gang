@@ -282,7 +282,8 @@ export class Preload extends Phaser.Scene {
         this.anims.create({
             key: 'dist_perso',
             frames: this.anims.generateFrameNumbers('proj_perso', { start: 0, end: 8 }),
-            frameRate: 10
+            frameRate: 10,
+            repeat:-1
         });
         this.anims.create({
             key: 'dist_linux',
