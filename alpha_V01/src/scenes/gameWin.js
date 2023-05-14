@@ -22,11 +22,11 @@ export class GameWin extends Phaser.Scene {
         this.add.image(0, 0, "gameWin_png").setOrigin(0, 0);
 
         if (this.level != 3){
-            this.nextLevel = this.add.image(100, 500, "startButton").setInteractive();
+            this.nextLevel = this.add.image(800, 800, "nextLevelButton").setInteractive().setScale(0.5).setOrigin(0.5, 0.5);
             this.nextLevel.on("pointerdown", this.goToNext, this);
         }
         else {
-            this.reRun = this.add.image(500, 900, "reRunButton").setInteractive();
+            this.reRun = this.add.image(800, 800, "reRunButton").setInteractive().setScale(0.5).setOrigin(0.5, 0.5);
             this.reRun.on("pointerdown", this.reRunGame, this);
         }
     }

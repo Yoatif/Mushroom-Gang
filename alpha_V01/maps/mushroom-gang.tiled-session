@@ -45,10 +45,10 @@
         },
         "level_03.tmx": {
             "scale": 0.5,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 4864,
-                "y": -18
+                "x": 4058,
+                "y": 1038
             }
         },
         "mapTest.tmx": {

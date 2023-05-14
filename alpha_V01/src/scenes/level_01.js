@@ -1,5 +1,6 @@
 import { Player } from "../../assets/entity/player.js";
 import { Hostile } from "../../assets/entity/hostiles.js";
+import { eventsCenter } from "../../src/script.js"
 
 export class Level01 extends Phaser.Scene {
     constructor() {
@@ -25,7 +26,7 @@ export class Level01 extends Phaser.Scene {
             this.listChoice.splice(2, 1)
         }
 
-        this.scene.run("ui-scene");
+        eventsCenter.emit('show-hp');
         //Load Tiled
         this.carteDuNiveau = this.add.tilemap("level_01");
         this.tileset = this.carteDuNiveau.addTilesetImage( "tileset", "tileset" );
@@ -110,10 +111,25 @@ export class Level01 extends Phaser.Scene {
 
     nextLevel(){
         this.player.alive = false;
-        this.scene.start("gameWin", {
-            level: this.level,
-            listChoice: this.listChoice
-        });
+        this.player.body.setVelocity(0);
+        if (this.player.type == "linux") {
+            this.player.anims.play('destroy_linux', true);
+            this.time.delayedCall(2000, ()=>{this.scene.start("gameWin", {
+                level: this.level,
+                listChoice: this.listChoice
+            })}, [], this);
+        }
+        else if (this.player.type == "windows") {
+            this.player.anims.play('parry_windows', true);
+        }
+        else if (this.player.type == "apple") {
+            this.player.anims.play('destroy_apple', true);
+            this.time.delayedCall(3000, ()=>{this.scene.start("gameWin", {
+                level: this.level,
+                listChoice: this.listChoice
+            })}, [], this);
+        }
+        eventsCenter.emit('hide-hp');
     }
 
     ennemiTouche(attaque, mob){

@@ -135,7 +135,19 @@
          "draworder":"topdown",
          "id":6,
          "name":"mob",
-         "objects":[],
+         "objects":[
+                {
+                 "height":0,
+                 "id":16,
+                 "name":"",
+                 "point":true,
+                 "rotation":0,
+                 "type":"cac",
+                 "visible":true,
+                 "width":0,
+                 "x":714,
+                 "y":728
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -190,7 +202,7 @@
          "y":0
         }],
  "nextlayerid":8,
- "nextobjectid":16,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.10.1",

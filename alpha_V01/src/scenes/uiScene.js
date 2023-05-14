@@ -17,10 +17,11 @@ export class UiScene extends Phaser.Scene
 
 	create()
 	{
-        this.healthbar = this.physics.add.sprite(0, 0, "spriteHealtBar").setOrigin(0, 0).setScale(0.75);
-        this.cadre = this.add.image(0, 0, "cadreVie").setOrigin(0, 0).setScale(0.75);
+        this.healthbar = this.physics.add.sprite(0, 0, "sprite_hp").setOrigin(0, 0).setScale(0.75);
 
         eventsCenter.on('update-hp', this.updateHp, this);
+        eventsCenter.on('hide-hp', this.hideHp, this);
+        eventsCenter.on('show-hp', this.showHp, this);
 	}
 
     updateHp(hp){
@@ -57,5 +58,11 @@ export class UiScene extends Phaser.Scene
         else if (hp == 0){
             this.healthbar.anims.play("0");
         }
+    }
+    hideHp(){
+        this.healthbar.setVisible(false);
+    }
+    showHp(){
+        this.healthbar.setVisible(true);
     }
 }

@@ -12,6 +12,7 @@ export class AttaqueCAC extends Phaser.Physics.Arcade.Sprite {
     init() {
         //Parametre
         this.body.setAllowGravity(false);
+        this.setVisible(false);
         this.disapear = true;
 
         //Anims

@@ -2,8 +2,8 @@ import { AttaqueCAC } from "./attaque_cac.js";
 import { AttaqueDIST } from "./attaque_distance.js";
 import { eventsCenter } from "../../src/script.js"
 export class Player extends Phaser.Physics.Arcade.Sprite {
-    constructor(scene, x, y) {
-        super(scene, x, y, "perso");
+    constructor(scene, x, y, sprite) {
+        super(scene, x, y, sprite);
         scene.add.existing(this);
         scene.physics.add.existing(this);
 
@@ -14,7 +14,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     init() {
         //Variable 
         this.alive = true;
-        this.hp = 50;
+        this.hp = 10;
         this.type = "";
         this.speed = 500;
         this.scale = 1;
@@ -35,7 +35,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
         this.setOrigin(0.5, 0.5)
         this.body.setMaxSpeed(this.speed);
         this.setCollideWorldBounds(true);
-
     }
 
     initEvents() {
@@ -61,17 +60,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 if (this.cursors.left.isDown) {
                     this.setVelocityX(-this.speed)
                     this.diretion = "left";
-                }
-                else if (this.cursors.right.isDown) {
-                    this.setVelocityX(this.speed);
-                    this.diretion = "right";
-                }
-                else {
-                    this.setVelocityX(0);
-                }
-
-                //Anims
-                if (this.diretion == "left") {
                     if (this.type == "linux") {
                         this.anims.play('left_linux', true);
                     }
@@ -81,9 +69,10 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     else if (this.type == "apple") {
                         this.anims.play('left_apple', true);
                     }
-
                 }
-                else if (this.diretion == "right") {
+                else if (this.cursors.right.isDown) {
+                    this.setVelocityX(this.speed);
+                    this.diretion = "right";
                     if (this.type == "linux") {
                         this.anims.play('right_linux', true);
                     }
@@ -94,6 +83,34 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                         this.anims.play('right_apple', true);
                     }
                 }
+                else {
+                    this.setVelocityX(0);
+                    if (this.diretion == "left") {
+                        if (this.type == "linux") {
+                            this.anims.play("standby_left_linux")
+                        }
+                        else if (this.type == "windows") {
+                            this.anims.play('right_windows', true);
+                        }
+                        else if (this.type == "apple") {
+                            this.anims.play('left_apple', true);
+                        }
+                    }
+                    else if (this.diretion == "right"){
+                        if (this.type == "linux") {
+                            this.anims.play("standby_right_linux")
+                        }
+                        else if (this.type == "windows") {
+                            this.anims.play('right_windows', true);
+                        }
+                        else if (this.type == "apple") {
+                            this.anims.play('right_apple', true);
+                        }
+                    }
+
+                }
+
+
             }
 
             //Pary
@@ -118,13 +135,17 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.inAction = true;
                 this.body.setVelocity(0, 0);
                 if (this.type == "linux") {
-                    this.anims.play('cac_linux', true);
+                    if (this.diretion == "left"){
+                        this.anims.play("cac_left_linux", true);
+                    }
+                    else if (this.diretion == "right"){
+                        this.anims.play("cac_right_linux", true);
+                    }
+                    this.scene.time.delayedCall(1000, () => { this.inAction = false }, [], this);
+                    this.scene.time.delayedCall(1000, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
                 }
                 else if (this.type == "windows") {
                     this.anims.play('cac_windows', true);
-                }
-                else if (this.type == "apple") {
-                    this.anims.play('cac_apple', true);
                 }
                 if (this.diretion == "left") {
                     this.attaque = new AttaqueCAC(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.type);
@@ -133,9 +154,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     this.attaque = new AttaqueCAC(this.scene, this.x + (32 * this.scale), this.y - (8 * this.scale), this.type);
                 }
                 this.attaque.getSkin(this.type, this.diretion)
-                this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
+                //this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
                 this.attaque_cac.add(this.attaque);
-                this.scene.time.delayedCall(500, () => { this.inAction = false }, [], this);
+                //this.scene.time.delayedCall(500, () => { this.inAction = false }, [], this);
             }
 
             //Attaque Distance
@@ -143,23 +164,29 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.inAction = true;
                 this.body.setVelocity(0, 0);
                 if (this.type == "linux") {
-                    this.anims.play('shoot_linux', true);
-                }
-                else if (this.type == "windows") {
-                    this.anims.play('shoot_windows', true);
+                    if (this.diretion == "left"){
+                        this.anims.play("shoot_left_linux", true);
+                        this.attaque = new AttaqueDIST(this.scene, this.x - (24 * this.scale), this.y - (8 * this.scale), this.type);
+                    }
+                    else if (this.diretion == "right"){
+                        this.anims.play("shoot_right_linux", true);
+                        this.attaque = new AttaqueDIST(this.scene, this.x + (24 * this.scale), this.y - (8 * this.scale), this.type);
+                    }
+                    this.scene.time.delayedCall(1000, () => { this.inAction = false }, [], this);
                 }
                 else if (this.type == "apple") {
-                    this.anims.play('shoot_apple', true);
-                }
-                if (this.diretion == "left") {
-                    this.attaque = new AttaqueDIST(this.scene, this.x - (24 * this.scale), this.y - (8 * this.scale), this.type);
-                }
-                else if (this.diretion == "right") {
-                    this.attaque = new AttaqueDIST(this.scene, this.x + (24 * this.scale), this.y - (8 * this.scale), this.type);
+                    if (this.diretion == "left"){
+                        this.anims.play("shoot_left_apple", true);
+                        this.attaque = new AttaqueDIST(this.scene, this.x - (24 * this.scale), this.y + (16 * this.scale), this.type);
+                    }
+                    else if (this.diretion == "right"){
+                        this.anims.play("shoot_right_apple", true);
+                        this.attaque = new AttaqueDIST(this.scene, this.x + (24 * this.scale), this.y + (16 * this.scale), this.type);
+                    }
+                    this.scene.time.delayedCall(1400, () => { this.inAction = false }, [], this);
                 }
                 this.attaque_dist.add(this.attaque);
                 this.attaque.getSkin(this.type, this.diretion);
-                this.scene.time.delayedCall(500, () => { this.inAction = false }, [], this);
             }
 
             //Gestion taille
@@ -182,13 +209,32 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     gainHp(proj, player) {
         if (player.parry == false) {
             player.beHit = true;
-            this.time.delayedCall(200, (player) => { player.beHit = false; }, [player], this);
             player.hp += 10;
             if (player.hp == 100) {
-                this.scene.start("gameOver");
+                player.alive = false;
+                player.inAction = true;
+                eventsCenter.emit('hide-hp');
+                this.mob.children.each((mob)=>{
+                    mob.vivant = false;
+                });
+                if (player.type == "linux") {
+                    console.log("Test")
+                    player.anims.play('repair_linux', true);
+                    this.time.delayedCall(800, ()=>{this.scene.start("gameOver")}, [], this);
+                }
+                else if (player.type == "windows") {
+                    player.anims.play('repair_windows', true);
+                }
+                else if (player.type == "apple") {
+                    player.anims.play('repair_apple', true);
+                    this.time.delayedCall(1400, ()=>{this.scene.start("gameOver")}, [], this);
+                }
+            }
+            else {
+                this.time.delayedCall(200, (player) => { player.beHit = false; }, [player], this);
             }
         }
-        proj.y = -50;
+        proj.destroy();
     }
 
     loseHp() {
