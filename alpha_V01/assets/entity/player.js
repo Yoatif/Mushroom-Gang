@@ -14,7 +14,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     init() {
         //Variable 
         this.alive = true;
-        this.hp = 10;
+        this.hp = 50;
         this.type = "";
         this.speed = 500;
         this.scale = 1;
@@ -135,6 +135,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.inAction = true;
                 this.body.setVelocity(0, 0);
                 if (this.type == "linux") {
+                    this.scene.sound.play("sound_cac_linux",{volume:0.002});
                     if (this.diretion == "left"){
                         this.anims.play("cac_left_linux", true);
                     }
@@ -164,6 +165,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.inAction = true;
                 this.body.setVelocity(0, 0);
                 if (this.type == "linux") {
+                    this.scene.sound.play("sound_tir_linux",{volume:0.005});
                     if (this.diretion == "left"){
                         this.anims.play("shoot_left_linux", true);
                         this.attaque = new AttaqueDIST(this.scene, this.x - (24 * this.scale), this.y - (8 * this.scale), this.type);
@@ -175,6 +177,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     this.scene.time.delayedCall(1000, () => { this.inAction = false }, [], this);
                 }
                 else if (this.type == "apple") {
+                    this.scene.sound.play("sound_tir_apple",{volume:0.02});
                     if (this.diretion == "left"){
                         this.anims.play("shoot_left_apple", true);
                         this.attaque = new AttaqueDIST(this.scene, this.x - (24 * this.scale), this.y + (16 * this.scale), this.type);
@@ -208,6 +211,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     gainHp(proj, player) {
         if (player.parry == false) {
+            this.sound.play("sound_repair_cac", {volume:0.005});
             player.beHit = true;
             player.hp += 10;
             if (player.hp == 100) {
@@ -238,6 +242,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     }
 
     loseHp() {
+        this.scene.sound.play("sound_destroy", {volume:0.001});
         this.hp -= 10
     }
 

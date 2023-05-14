@@ -11,7 +11,6 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
     }
 
     init() {
-        console.log(this)
         this.player = null;
         this.ennemiTouche = false;
         this.vie = 3;

@@ -133,7 +133,6 @@ export class Level01 extends Phaser.Scene {
     }
 
     ennemiTouche(attaque, mob){
-        console.log(mob)
         if (mob.ennemiTouche == false){
             mob.ennemiTouche = true;
             mob.vie -= 1;
