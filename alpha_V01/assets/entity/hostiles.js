@@ -105,7 +105,6 @@ export class Hostile extends Phaser.Physics.Arcade.Sprite {
                                 this.attaque.getSkin(this.typeE, "right");
                             }
                             this.cdAttack = false;
-                            console.log(this.attaque)
                             this.scene.physics.add.overlap(this.attaque, this.scene.player, this.scene.player.gainHp, this.scene.player.immune, this.scene);
                             this.scene.time.delayedCall(2000, () => { this.cdAttack = true }, [], this);
                         }

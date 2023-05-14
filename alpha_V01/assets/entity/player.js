@@ -222,7 +222,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     mob.vivant = false;
                 });
                 if (player.type == "linux") {
-                    console.log("Test")
                     player.anims.play('repair_linux', true);
                     this.time.delayedCall(800, ()=>{this.scene.start("gameOver")}, [], this);
                 }
@@ -238,6 +237,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.time.delayedCall(200, (player) => { player.beHit = false; }, [player], this);
             }
         }
+        proj.disapear = false;
         proj.destroy();
     }
 

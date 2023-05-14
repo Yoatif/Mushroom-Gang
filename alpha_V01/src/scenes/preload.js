@@ -56,6 +56,9 @@ export class Preload extends Phaser.Scene {
             {frameWidth:32, frameHeight:16 });
         this.load.image("preasure", "./assets/preasure.png");
         this.load.image("proj_preasure", "./assets/proj_preasure.png");
+        this.load.image("tuyau", "./assets/tuyau.png");
+        this.load.spritesheet("roulant", "./assets/roulant.png",
+            { frameWidth:32, frameHeight:32 });
         this.load.image("broyeuse", './assets/broyeuse.png');
 
         //Game Screen
@@ -86,7 +89,6 @@ export class Preload extends Phaser.Scene {
     create() {
         //Animation Perso
         //linux
-
         this.anims.create({
             key: 'left_linux',
             frames: this.anims.generateFrameNumbers('linux', { start: 20, end: 24 }),
@@ -222,6 +224,11 @@ export class Preload extends Phaser.Scene {
 
 
         //Animation Ennemie
+        this.anims.create({
+            key: 'dist_perso',
+            frames: [{ key: 'proj_apple', frame: 0 }],
+            frameRate: 20
+        });
 
         //Animation Barre de vie
         this.anims.create({
