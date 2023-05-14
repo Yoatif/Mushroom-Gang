@@ -90,7 +90,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                             this.anims.play("standby_left_linux")
                         }
                         else if (this.type == "windows") {
-                            this.anims.play('right_windows', true);
+                            this.anims.play('standby_left_windows', true);
                         }
                         else if (this.type == "apple") {
                             this.anims.play('left_apple', true);
@@ -101,7 +101,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                             this.anims.play("standby_right_linux")
                         }
                         else if (this.type == "windows") {
-                            this.anims.play('right_windows', true);
+                            this.anims.play('standby_right_windows', true);
                         }
                         else if (this.type == "apple") {
                             this.anims.play('right_apple', true);
@@ -119,10 +119,20 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 this.parry = true;
                 this.inAction = true;
                 if (this.type == "linux") {
-                    this.anims.play('parry_linux', true);
+                    if (this.diretion == "left"){
+                        this.anims.play("parry_left_linux", true);
+                    }
+                    else if (this.diretion == "right"){
+                        this.anims.play("parry_right_linux", true);
+                    }
                 }
                 else if (this.type == "windows") {
-                    this.anims.play('parry_windows', true);
+                    if (this.diretion == "left"){
+                        this.anims.play("parry_left_windows", true);
+                    }
+                    else if (this.diretion == "right"){
+                        this.anims.play("parry_right_windows", true);
+                    }
                 }
                 else if (this.type == "apple") {
                     if (this.diretion == "left"){
@@ -151,7 +161,14 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
                 }
                 else if (this.type == "windows") {
-                    this.anims.play('cac_windows', true);
+                    if (this.diretion == "left"){
+                        this.anims.play("cac_left_windows", true);
+                    }
+                    else if (this.diretion == "right"){
+                        this.anims.play("cac_right_windows", true);
+                    }
+                    this.scene.time.delayedCall(500, () => { this.inAction = false }, [], this);
+                    this.scene.time.delayedCall(500, () => { this.attaque.destroy(); this.attaque.disapear = false }, [], this);
                 }
                 if (this.diretion == "left") {
                     this.attaque = new AttaqueCAC(this.scene, this.x - (32 * this.scale), this.y - (8 * this.scale), this.type);
@@ -172,6 +189,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                     if (this.diretion == "left"){
                         this.anims.play("shoot_left_linux", true);
                         this.attaque = new AttaqueDIST(this.scene, this.x - (24 * this.scale), this.y - (8 * this.scale), this.type);
+                        this.attaque.setFlipX(true);
                     }
                     else if (this.diretion == "right"){
                         this.anims.play("shoot_right_linux", true);
@@ -203,9 +221,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
             this.hitBoxX = (this.y * 32) / 1024;
             this.setSize(this.hitBoxX, this.hitBoxY);
         }
-
-
-
     }
 
     getType(type) {
@@ -230,6 +245,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
                 }
                 else if (player.type == "windows") {
                     player.anims.play('repair_windows', true);
+                    this.time.delayedCall(800, ()=>{this.scene.start("gameOver")}, [], this);
                 }
                 else if (player.type == "apple") {
                     player.anims.play('repair_apple', true);
